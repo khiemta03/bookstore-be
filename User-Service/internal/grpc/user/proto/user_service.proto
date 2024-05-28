@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package pb;
+
+import "rpc_create_user.proto";
+import "rpc_get_user_by_id.proto";
+import "rpc_list_users.proto";
+import "rpc_get_user_by_name.proto";
+import "rpc_validate_login_credentials.proto";
+import "user.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/user-service/internal/grpc/user/pb";
+
+service UserService {
+    rpc CreateUser (CreateUserRequest) returns (User) {};
+    rpc GetUserById (GetUserByIdRequest) returns (User) {};
+    rpc GetUserByName (GetUserByNameRequest) returns (User) {};
+    rpc ListUsers (ListUsersRequest) returns (stream User) {};
+    rpc ValidateLoginCredentials (ValidateLoginCredentialsRequest) returns (ValidateLoginCredentialsResponse) {};
+}
+
