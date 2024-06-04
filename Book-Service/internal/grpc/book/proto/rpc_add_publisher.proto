@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/book-service/internal/grpc/book/pb;pb";
+
+message AddNewPublisherRequest {
+    string name = 1;
+    string address = 2;
+}
