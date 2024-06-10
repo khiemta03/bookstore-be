@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/order/pb;pb";
+
+message Discount {
+    string discount_id = 1;
+    string discount_code = 2;
+    double discount_value = 3;
+    google.protobuf.Timestamp start_date = 4;
+    google.protobuf.Timestamp end_date = 5;
+}

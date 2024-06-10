@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package pb;
+
+import "book.proto";
+import "rpc_get_book.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/book-service/internal/grpc/book/pb;pb";
+
+service BookService {
+    rpc GetBook (GetBookRequest) returns (Book) {};
+}
+

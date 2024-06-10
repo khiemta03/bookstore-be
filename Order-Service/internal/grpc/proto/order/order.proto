@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/order/pb;pb";
+
+message Order {
+    string order_id = 1;
+    string user_id = 2;
+    google.protobuf.Timestamp order_at = 3;
+    string discount = 4;
+    string status = 5;
+    double total_amount = 6;
+    string shipping_address = 7; 
+}
+
+message OrderDetail {
+    string order_id = 1;
+    string book_id = 2;
+    int32  quantity = 3;
+    double unit_price = 4;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pb;
+
+import "order.proto";
+import "rpc_get_order.proto";
+import "rpc_create_order.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/order/pb;pb";
+
+service OrderService {
+    rpc GetOrderByUser (GetOrderRequest) returns (Order) {};
+    rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse) {};
+}
+
