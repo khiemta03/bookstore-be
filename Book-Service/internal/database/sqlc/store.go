@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	ce "github.com/khiemta03/bookstore-be/book-service/pkg/error"
+	ce "github.com/khiemta03/bookstore-be/book-service/internal/error"
 )
 
 // Store provides all functions to execute db queries and transactions

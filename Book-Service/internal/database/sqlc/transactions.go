@@ -7,11 +7,10 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	ce "github.com/khiemta03/bookstore-be/book-service/pkg/error"
+	ce "github.com/khiemta03/bookstore-be/book-service/internal/error"
 	"github.com/lib/pq"
 )
 
-// AddNewBookTx handles adding new book transaction
 type AddNewBookTxParams struct {
 	Title           string         `json:"title"`
 	FullTitle       string         `json:"full_title"`
@@ -32,6 +31,7 @@ type AddNewBookTxResult struct {
 	Authors   []AUTHOR  `json:"authors"`
 }
 
+// AddNewBookTx handles adding new book transaction
 func (store *Store) AddNewBookTx(ctx context.Context, arg AddNewBookTxParams) (AddNewBookTxResult, ce.CustomError) {
 	var result AddNewBookTxResult
 
@@ -96,13 +96,13 @@ func (store *Store) AddNewBookTx(ctx context.Context, arg AddNewBookTxParams) (A
 	return result, cerr
 }
 
-// GetBookTx handles getting a specific book transaction
 type GetBookTxResult struct {
 	Book      BOOK      `json:"book"`
 	Publisher PUBLISHER `json:"publisher"`
 	Authors   []AUTHOR  `json:"authors"`
 }
 
+// GetBookTx handles getting a specific book transaction
 func (store *Store) GetBookTx(ctx context.Context, id uuid.UUID) (GetBookTxResult, ce.CustomError) {
 	var result GetBookTxResult
 
@@ -154,12 +154,12 @@ func (store *Store) GetBookTx(ctx context.Context, id uuid.UUID) (GetBookTxResul
 	return result, cerr
 }
 
-// ListBooksTx handles a transaction of getting book list
 type ListBooksTxParams struct {
 	Offset int32 `json:"offset"`
 	Limit  int32 `json:"limit"`
 }
 
+// ListBooksTx handles a transaction of getting book list
 func (store *Store) ListBooksTx(ctx context.Context, arg ListBooksTxParams) ([]GetBookTxResult, ce.CustomError) {
 	var result []GetBookTxResult
 
@@ -219,4 +219,49 @@ func (store *Store) ListBooksTx(ctx context.Context, arg ListBooksTxParams) ([]G
 	})
 
 	return result, cerr
+}
+
+type DecreaseStockQuantityTxParams struct {
+	BookID  uuid.UUID `json:"user_id"`
+	Quanity int32     `json:"quantity"`
+}
+
+type DecreaseStockQuantityTxResult struct {
+	BookID    uuid.UUID `json:"user_id"`
+	Quanity   int32     `json:"quantity"`
+	UnitPrice float64   `json:"unit_price"`
+}
+
+// ListBooksTx handles a transaction of decreasing a book's stock quantity
+func (store *Store) DecreaseStockQuantityTx(ctx context.Context, arg DecreaseStockQuantityTxParams) (*DecreaseStockQuantityTxResult, ce.CustomError) {
+	var result DecreaseStockQuantityTxResult
+
+	cerr := store.execTx(ctx, func(q *Queries) ce.CustomError {
+		book, err := store.GetBook(ctx, arg.BookID)
+		if err != nil {
+			if err == sql.ErrNoRows {
+				return ce.BookNotFoundError(err)
+			}
+			return ce.InternalServerError(err)
+		}
+
+		if book.StockQuantity < arg.Quanity {
+			return ce.OutOfStockError(err)
+		}
+
+		err = store.DecreaseStockQuantity(ctx, DecreaseStockQuantityParams{
+			ID:       arg.BookID,
+			Quantity: arg.Quanity,
+		})
+		if err != nil {
+			return ce.InternalServerError(err)
+		}
+
+		result.BookID = arg.BookID
+		result.Quanity = arg.Quanity
+		result.UnitPrice = book.Price
+
+		return ce.NilCustomError()
+	})
+	return &result, cerr
 }

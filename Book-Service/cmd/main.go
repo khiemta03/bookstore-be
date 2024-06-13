@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/khiemta03/bookstore-be/book-service/api"
 	"github.com/khiemta03/bookstore-be/book-service/internal/config"
 	db "github.com/khiemta03/bookstore-be/book-service/internal/database/sqlc"
-	"github.com/khiemta03/bookstore-be/book-service/internal/grpc/book/gapi"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 		log.Fatal("cannot connect to the database:", err)
 	}
 
-	server := gapi.NewServer(store)
+	server := api.NewServer(store)
 
 	address := fmt.Sprintf("%s:%s", config.ServerHost, config.ServerPort)
 	server.Run(address)

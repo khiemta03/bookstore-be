@@ -20,9 +20,9 @@ server:
 	go run cmd/main.go	
 
 proto:
-	protoc --proto_path=internal/grpc/book/proto:internal/grpc/google/type \
-       --go_out=internal/grpc/book/pb --go_opt=paths=source_relative \
-       --go-grpc_out=internal/grpc/book/pb --go-grpc_opt=paths=source_relative \
-       internal/grpc/book/proto/*.proto
+	protoc --proto_path=internal/grpc/proto/book:internal/grpc/proto/google/type \
+       --go_out=internal/grpc/gen/book --go_opt=paths=source_relative \
+       --go-grpc_out=internal/grpc/gen/book --go-grpc_opt=paths=source_relative \
+       internal/grpc/proto/book/*.proto
 
 .PHONY: postgres createdb dropdb migrateup migratedown sqlc server

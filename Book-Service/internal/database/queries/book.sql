@@ -62,5 +62,13 @@ SET
     back_cover_image    = COALESCE($11, back_cover_image)
 WHERE
     id = $1;
+
+-- name: DecreaseStockQuantity :exec
+UPDATE
+    "BOOKS"
+SET
+    stock_quantity = stock_quantity - sqlc.arg(quantity)
+WHERE
+    id = $1;
     
 

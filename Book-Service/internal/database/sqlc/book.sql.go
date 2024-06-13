@@ -97,6 +97,25 @@ func (q *Queries) AddNewBook(ctx context.Context, arg AddNewBookParams) (BOOK, e
 	return i, err
 }
 
+const decreaseStockQuantity = `-- name: DecreaseStockQuantity :exec
+UPDATE
+    "BOOKS"
+SET
+    stock_quantity = stock_quantity - $2
+WHERE
+    id = $1
+`
+
+type DecreaseStockQuantityParams struct {
+	ID       uuid.UUID `json:"id"`
+	Quantity int32     `json:"quantity"`
+}
+
+func (q *Queries) DecreaseStockQuantity(ctx context.Context, arg DecreaseStockQuantityParams) error {
+	_, err := q.db.ExecContext(ctx, decreaseStockQuantity, arg.ID, arg.Quantity)
+	return err
+}
+
 const getBook = `-- name: GetBook :one
 SELECT
     id, title, full_title, publisher, publication_date, isbn, description, price, stock_quantity, front_cover_image, back_cover_image, created_at

@@ -15,6 +15,7 @@ type Querier interface {
 	AddNewAuthor(ctx context.Context, arg AddNewAuthorParams) (AUTHOR, error)
 	AddNewBook(ctx context.Context, arg AddNewBookParams) (BOOK, error)
 	AddNewPublisher(ctx context.Context, arg AddNewPublisherParams) (PUBLISHER, error)
+	DecreaseStockQuantity(ctx context.Context, arg DecreaseStockQuantityParams) error
 	GetAuthor(ctx context.Context, id uuid.UUID) (AUTHOR, error)
 	GetBook(ctx context.Context, id uuid.UUID) (BOOK, error)
 	GetBookAuthors(ctx context.Context, bookID uuid.UUID) ([]BOOKAUTHOR, error)
