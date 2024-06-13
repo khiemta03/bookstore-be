@@ -5,17 +5,19 @@ import "errors"
 
 var (
 	ErrInvalidAgrumentStr          = "invalid agrument error"
+	ErrItemExistedStr              = "item has been added into cart"
 	ErrOrderNotFoundStr            = "order not found error"
 	ErrOrderDetailNotFoundStr      = "order detail not found error"
 	ErrDiscountNotFoundStr         = "discount not found error"
 	ErrShoppingCartItemNotFoundStr = "shopping cart item not found error"
 	ErrNonGRPCStr                  = "non-gRPC error"
-	ErrInternalServerStr           = "internal server error"
+	ErrInternalServerStr           = "oops something went wrong"
 	ErrUnknownGRPCStr              = "unknown gRPC error"
 )
 
 var (
 	ErrInvalidAgrument          = errors.New(ErrInvalidAgrumentStr)
+	ErrItemExisted              = errors.New(ErrItemExistedStr)
 	ErrOrderNotFound            = errors.New(ErrOrderNotFoundStr)
 	ErrDiscountNotFound         = errors.New(ErrDiscountNotFoundStr)
 	ErrOrderDetailNotFound      = errors.New(ErrOrderDetailNotFoundStr)

@@ -24,6 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 type OrderServiceClient interface {
 	GetOrderByUser(ctx context.Context, in *GetOrderRequest, opts ...grpc.CallOption) (*Order, error)
 	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error)
+	AddNewItem(ctx context.Context, in *AddNewItemRequest, opts ...grpc.CallOption) (*ShoppingCartItem, error)
+	RemoveItem(ctx context.Context, in *RemoveItemRequest, opts ...grpc.CallOption) (*RemoveItemResponse, error)
+	GetItem(ctx context.Context, in *GetShoppingCartItemRequest, opts ...grpc.CallOption) (*ShoppingCartItem, error)
 }
 
 type orderServiceClient struct {
@@ -52,12 +55,42 @@ func (c *orderServiceClient) CreateOrder(ctx context.Context, in *CreateOrderReq
 	return out, nil
 }
 
+func (c *orderServiceClient) AddNewItem(ctx context.Context, in *AddNewItemRequest, opts ...grpc.CallOption) (*ShoppingCartItem, error) {
+	out := new(ShoppingCartItem)
+	err := c.cc.Invoke(ctx, "/pb.OrderService/AddNewItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderServiceClient) RemoveItem(ctx context.Context, in *RemoveItemRequest, opts ...grpc.CallOption) (*RemoveItemResponse, error) {
+	out := new(RemoveItemResponse)
+	err := c.cc.Invoke(ctx, "/pb.OrderService/RemoveItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderServiceClient) GetItem(ctx context.Context, in *GetShoppingCartItemRequest, opts ...grpc.CallOption) (*ShoppingCartItem, error) {
+	out := new(ShoppingCartItem)
+	err := c.cc.Invoke(ctx, "/pb.OrderService/GetItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderServiceServer is the server API for OrderService service.
 // All implementations must embed UnimplementedOrderServiceServer
 // for forward compatibility
 type OrderServiceServer interface {
 	GetOrderByUser(context.Context, *GetOrderRequest) (*Order, error)
 	CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error)
+	AddNewItem(context.Context, *AddNewItemRequest) (*ShoppingCartItem, error)
+	RemoveItem(context.Context, *RemoveItemRequest) (*RemoveItemResponse, error)
+	GetItem(context.Context, *GetShoppingCartItemRequest) (*ShoppingCartItem, error)
 	mustEmbedUnimplementedOrderServiceServer()
 }
 
@@ -70,6 +103,15 @@ func (UnimplementedOrderServiceServer) GetOrderByUser(context.Context, *GetOrder
 }
 func (UnimplementedOrderServiceServer) CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrder not implemented")
+}
+func (UnimplementedOrderServiceServer) AddNewItem(context.Context, *AddNewItemRequest) (*ShoppingCartItem, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddNewItem not implemented")
+}
+func (UnimplementedOrderServiceServer) RemoveItem(context.Context, *RemoveItemRequest) (*RemoveItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveItem not implemented")
+}
+func (UnimplementedOrderServiceServer) GetItem(context.Context, *GetShoppingCartItemRequest) (*ShoppingCartItem, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetItem not implemented")
 }
 func (UnimplementedOrderServiceServer) mustEmbedUnimplementedOrderServiceServer() {}
 
@@ -120,6 +162,60 @@ func _OrderService_CreateOrder_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderService_AddNewItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddNewItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).AddNewItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.OrderService/AddNewItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).AddNewItem(ctx, req.(*AddNewItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderService_RemoveItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).RemoveItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.OrderService/RemoveItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).RemoveItem(ctx, req.(*RemoveItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderService_GetItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetShoppingCartItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).GetItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.OrderService/GetItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).GetItem(ctx, req.(*GetShoppingCartItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderService_ServiceDesc is the grpc.ServiceDesc for OrderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +230,18 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateOrder",
 			Handler:    _OrderService_CreateOrder_Handler,
+		},
+		{
+			MethodName: "AddNewItem",
+			Handler:    _OrderService_AddNewItem_Handler,
+		},
+		{
+			MethodName: "RemoveItem",
+			Handler:    _OrderService_RemoveItem_Handler,
+		},
+		{
+			MethodName: "GetItem",
+			Handler:    _OrderService_GetItem_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -9,20 +9,20 @@ import (
 )
 
 type CreateOrderTxParams struct {
-	UserID          string        `json:"user_id"`
-	DiscountID      uuid.NullUUID `json:"discount_id"`
-	ShippingAddress string        `json:"shipping_address"`
-	CartItemIDList  []uuid.UUID   `json:"cart_items_ids"`
+	UserID          string             `json:"user_id"`
+	DiscountID      uuid.NullUUID      `json:"discount_id"`
+	ShippingAddress string             `json:"shipping_address"`
+	ItemList        []SHOPPINGCARTITEM `json:"item_list"`
 }
 
 type CreateOrderTxResult struct {
-	Order           ORDER         `json:"order"`
+	Order           GetOrderRow   `json:"order"`
 	Discount        DISCOUNT      `json:"discount"`
 	OrderDetailList []ORDERDETAIL `json:"order_detail_list"`
 }
 
 // CreateOrderTx handles new order creation transaction
-func (store *Store) CreateOrderTx(ctx context.Context, arg CreateOrderTxParams) (CreateOrderTxResult, ce.CustomError) {
+func (store *SQLStore) CreateOrderTx(ctx context.Context, arg CreateOrderTxParams) (CreateOrderTxResult, ce.CustomError) {
 	var result CreateOrderTxResult
 
 	cerr := store.execTx(ctx, func(q *Queries) ce.CustomError {
@@ -37,40 +37,8 @@ func (store *Store) CreateOrderTx(ctx context.Context, arg CreateOrderTxParams) 
 			result.Discount = discount
 		}
 
-		var totalAmount float64 = 0
-		orderID := uuid.New()
-		for _, cartItemID := range arg.CartItemIDList {
-			cartItem, err := store.GetShoppingCartItem(ctx, cartItemID)
-			if err != nil {
-				if err == sql.ErrNoRows {
-					return ce.ShoppingCartItemNotFoundError(err)
-				}
-
-				return ce.InternalServerError(err)
-			}
-
-			orderDetail, err := store.CreateOrderDetail(ctx, CreateOrderDetailParams{
-				OrderID:   orderID,
-				BookID:    cartItem.BookID,
-				Quantity:  cartItem.Quantity,
-				UnitPrice: cartItem.UnitPrice,
-			})
-			if err != nil {
-				return ce.InternalServerError(err)
-			}
-
-			totalAmount += cartItem.UnitPrice
-
-			result.OrderDetailList = append(result.OrderDetailList, orderDetail)
-		}
-
-		if arg.DiscountID.Valid {
-			totalAmount *= result.Discount.DiscountValue
-		}
 		order, err := store.CreateOrder(ctx, CreateOrderParams{
-			OrderID:         orderID,
 			UserID:          arg.UserID,
-			TotalAmount:     totalAmount,
 			ShippingAddress: arg.ShippingAddress,
 			Discount:        arg.DiscountID,
 		})
@@ -78,7 +46,60 @@ func (store *Store) CreateOrderTx(ctx context.Context, arg CreateOrderTxParams) 
 			return ce.InternalServerError(err)
 		}
 
-		result.Order = order
+		for _, cartItem := range arg.ItemList {
+			orderDetail, err := store.CreateOrderDetail(ctx, CreateOrderDetailParams{
+				OrderID:   order.OrderID,
+				BookID:    cartItem.BookID,
+				Quantity:  cartItem.Quantity,
+				UnitPrice: cartItem.UnitPrice,
+			})
+
+			if err != nil {
+				return ce.InternalServerError(err)
+			}
+
+			result.OrderDetailList = append(result.OrderDetailList, orderDetail)
+		}
+
+		orderWithTotalAmount, err := store.GetOrder(ctx, order.OrderID)
+		if err != nil {
+			return ce.InternalServerError(err)
+		}
+
+		result.Order = orderWithTotalAmount
+
+		return ce.NilCustomError()
+	})
+
+	return result, cerr
+}
+
+type RemoveItemTxResult struct {
+	UserID string    `json:"user_id"`
+	ItemID uuid.UUID `json:"item_id"`
+}
+
+func (store *SQLStore) RemoveItemTx(ctx context.Context, arg RemoveItemTxResult) (SHOPPINGCARTITEM, ce.CustomError) {
+	var result SHOPPINGCARTITEM
+	cerr := store.execTx(ctx, func(q *Queries) ce.CustomError {
+		_, err := store.GetShoppingCartItemByUserForUpdate(ctx, GetShoppingCartItemByUserForUpdateParams{
+			UserID:     arg.UserID,
+			CartItemID: arg.ItemID,
+		})
+		if err != nil {
+			if err == sql.ErrNoRows {
+				return ce.ShoppingCartItemNotFoundError(err)
+			}
+			return ce.InternalServerError(err)
+		}
+
+		result, err = store.UpdateShoppingCartItemStatus(ctx, UpdateShoppingCartItemStatusParams{
+			CartItemID: arg.ItemID,
+			Status:     "REMOVED",
+		})
+		if err != nil {
+			return ce.InternalServerError(err)
+		}
 
 		return ce.NilCustomError()
 	})

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package pb;
 
-option go_package = "github.com/khiemta03/bookstore-be/book-service/internal/grpc/book/pb;pb";
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/gen/book;pb";
 
 message GetBookRequest {
     string id = 1;

@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"database/sql"
 
 	"github.com/google/uuid"
 	ce "github.com/khiemta03/bookstore-be/order-service/internal/error"
@@ -21,7 +22,10 @@ func (server *Server) GetOrderByUser(ctx context.Context, req *pb.GetOrderReques
 
 	order, err := server.store.GetOrder(ctx, convertedOrderId)
 	if err != nil {
-		return nil, status.Errorf(codes.NotFound, ce.ErrOrderNotFoundStr)
+		if err == sql.ErrNoRows {
+			return nil, status.Errorf(codes.NotFound, ce.ErrOrderNotFoundStr)
+		}
+		return nil, status.Errorf(codes.Internal, ce.ErrInternalServerStr)
 	}
 
 	if order.UserID != userId {

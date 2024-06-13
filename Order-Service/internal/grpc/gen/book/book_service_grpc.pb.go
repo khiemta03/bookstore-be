@@ -23,6 +23,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BookServiceClient interface {
 	GetBook(ctx context.Context, in *GetBookRequest, opts ...grpc.CallOption) (*Book, error)
+	CheckBookAdaptability(ctx context.Context, in *CheckBookAdaptabilityRequest, opts ...grpc.CallOption) (*DecreaseStockQuantityResponse, error)
+	DecreaseStockQuantity(ctx context.Context, opts ...grpc.CallOption) (BookService_DecreaseStockQuantityClient, error)
 }
 
 type bookServiceClient struct {
@@ -42,11 +44,53 @@ func (c *bookServiceClient) GetBook(ctx context.Context, in *GetBookRequest, opt
 	return out, nil
 }
 
+func (c *bookServiceClient) CheckBookAdaptability(ctx context.Context, in *CheckBookAdaptabilityRequest, opts ...grpc.CallOption) (*DecreaseStockQuantityResponse, error) {
+	out := new(DecreaseStockQuantityResponse)
+	err := c.cc.Invoke(ctx, "/pb.BookService/CheckBookAdaptability", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bookServiceClient) DecreaseStockQuantity(ctx context.Context, opts ...grpc.CallOption) (BookService_DecreaseStockQuantityClient, error) {
+	stream, err := c.cc.NewStream(ctx, &BookService_ServiceDesc.Streams[0], "/pb.BookService/DecreaseStockQuantity", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &bookServiceDecreaseStockQuantityClient{stream}
+	return x, nil
+}
+
+type BookService_DecreaseStockQuantityClient interface {
+	Send(*DecreaseStockQuantityRequest) error
+	Recv() (*DecreaseStockQuantityResponse, error)
+	grpc.ClientStream
+}
+
+type bookServiceDecreaseStockQuantityClient struct {
+	grpc.ClientStream
+}
+
+func (x *bookServiceDecreaseStockQuantityClient) Send(m *DecreaseStockQuantityRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *bookServiceDecreaseStockQuantityClient) Recv() (*DecreaseStockQuantityResponse, error) {
+	m := new(DecreaseStockQuantityResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // BookServiceServer is the server API for BookService service.
 // All implementations must embed UnimplementedBookServiceServer
 // for forward compatibility
 type BookServiceServer interface {
 	GetBook(context.Context, *GetBookRequest) (*Book, error)
+	CheckBookAdaptability(context.Context, *CheckBookAdaptabilityRequest) (*DecreaseStockQuantityResponse, error)
+	DecreaseStockQuantity(BookService_DecreaseStockQuantityServer) error
 	mustEmbedUnimplementedBookServiceServer()
 }
 
@@ -56,6 +100,12 @@ type UnimplementedBookServiceServer struct {
 
 func (UnimplementedBookServiceServer) GetBook(context.Context, *GetBookRequest) (*Book, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBook not implemented")
+}
+func (UnimplementedBookServiceServer) CheckBookAdaptability(context.Context, *CheckBookAdaptabilityRequest) (*DecreaseStockQuantityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckBookAdaptability not implemented")
+}
+func (UnimplementedBookServiceServer) DecreaseStockQuantity(BookService_DecreaseStockQuantityServer) error {
+	return status.Errorf(codes.Unimplemented, "method DecreaseStockQuantity not implemented")
 }
 func (UnimplementedBookServiceServer) mustEmbedUnimplementedBookServiceServer() {}
 
@@ -88,6 +138,50 @@ func _BookService_GetBook_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BookService_CheckBookAdaptability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckBookAdaptabilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BookServiceServer).CheckBookAdaptability(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.BookService/CheckBookAdaptability",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BookServiceServer).CheckBookAdaptability(ctx, req.(*CheckBookAdaptabilityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BookService_DecreaseStockQuantity_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(BookServiceServer).DecreaseStockQuantity(&bookServiceDecreaseStockQuantityServer{stream})
+}
+
+type BookService_DecreaseStockQuantityServer interface {
+	Send(*DecreaseStockQuantityResponse) error
+	Recv() (*DecreaseStockQuantityRequest, error)
+	grpc.ServerStream
+}
+
+type bookServiceDecreaseStockQuantityServer struct {
+	grpc.ServerStream
+}
+
+func (x *bookServiceDecreaseStockQuantityServer) Send(m *DecreaseStockQuantityResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *bookServiceDecreaseStockQuantityServer) Recv() (*DecreaseStockQuantityRequest, error) {
+	m := new(DecreaseStockQuantityRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // BookService_ServiceDesc is the grpc.ServiceDesc for BookService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -99,7 +193,18 @@ var BookService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "GetBook",
 			Handler:    _BookService_GetBook_Handler,
 		},
+		{
+			MethodName: "CheckBookAdaptability",
+			Handler:    _BookService_CheckBookAdaptability_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "DecreaseStockQuantity",
+			Handler:       _BookService_DecreaseStockQuantity_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "book_service.proto",
 }

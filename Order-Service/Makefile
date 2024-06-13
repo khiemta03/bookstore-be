@@ -1,17 +1,17 @@
 postgres:
-	docker run --name user-service-postgres12 -p 6001:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=user-service -d postgres:12-alpine
+	docker run --name order-service-postgres12 -p 6004:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=order-service -d postgres:12-alpine
 
 createdb:
-	docker exec -it user-service-postgres12 createdb --username=root --owner=root user-service-database
+	docker exec -it order-service-postgres12 createdb --username=root --owner=root order-service-database
 
 dropdb:
-	docker exec -it user-service-postgres12 dropdb user-service-database
+	docker exec -it order-service-postgres12 dropdb order-service-database
 
 migrateup:
-	migrate -path migration -database "postgresql://root:user-service@localhost:6001/user-service-database?sslmode=disable" -verbose up
+	migrate -path migration -database "postgresql://root:order-service@localhost:6004/order-service-database?sslmode=disable" -verbose up
 
 migratedown:
-	migrate -path migration -database "postgresql://root:user-service@localhost:6001/user-service-database?sslmode=disable" -verbose down
+	migrate -path migration -database "postgresql://root:order-service@localhost:6004/order-service-database?sslmode=disable" -verbose down
 
 sqlc:
 	sqlc generate

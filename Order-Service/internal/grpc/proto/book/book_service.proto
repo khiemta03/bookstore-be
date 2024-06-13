@@ -4,10 +4,14 @@ package pb;
 
 import "book.proto";
 import "rpc_get_book.proto";
+import "rpc_check_book_adaptability.proto";
+import "rpc_decrease_stock_quantity.proto";
 
-option go_package = "github.com/khiemta03/bookstore-be/book-service/internal/grpc/book/pb;pb";
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/gen/book;pb";
 
 service BookService {
     rpc GetBook (GetBookRequest) returns (Book) {};
+    rpc CheckBookAdaptability (CheckBookAdaptabilityRequest) returns (DecreaseStockQuantityResponse) {};
+    rpc DecreaseStockQuantity (stream DecreaseStockQuantityRequest) returns (stream DecreaseStockQuantityResponse) {};
 }
 

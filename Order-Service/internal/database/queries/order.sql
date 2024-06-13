@@ -1,36 +1,37 @@
 -- name: GetOrder :one
 SELECT
-    *
+    O.*,  CAST((SUM(OD.quantity * OD.unit_price) * COALESCE(D.discount_value, 1)) AS FLOAT) AS total_amount
 FROM
-    "ORDERS"
-WHERE order_id = $1;
-
--- name: ListOrdersByUser :one
-SELECT
-    *
-FROM
-    "ORDERS"
-WHERE user_id = $1
-LIMIT $2 OFFSET $3;
+    "ORDERS" AS O LEFT JOIN "ORDER_DETAILS" AS OD 
+    ON O.order_id = OD.order_id
+    LEFT JOIN "DISCOUNTS" AS D
+    ON O.discount = D.discount_id
+WHERE O.order_id = $1
+GROUP BY
+    O.order_id, D.discount_value;
 
 -- name: ListOrders :many
 SELECT
-    *
+    O.*,  CAST((SUM(OD.quantity * OD.unit_price) * COALESCE(D.discount_value, 1)) AS FLOAT) AS total_amount
 FROM
-    "ORDERS"
-LIMIT $1 OFFSET $2;
+    "ORDERS" AS O LEFT JOIN "ORDER_DETAILS" AS OD 
+    ON O.order_id = OD.order_id
+    LEFT JOIN "DISCOUNTS" AS D
+    ON O.discount = D.discount_id
+WHERE user_id = $1
+GROUP BY
+    O.order_id, D.discount_value
+LIMIT $2 OFFSET $3;
 
 -- name: CreateOrder :one
 INSERT INTO
     "ORDERS" (
-        order_id,
         user_id,
-        total_amount,
         shipping_address,
         discount
     )
 VALUES
-    ($1, $2, $3, $4, $5) RETURNING *;
+    ($1, $2, $3) RETURNING *;
 
 -- name: ListOrderDetails :many
 SELECT

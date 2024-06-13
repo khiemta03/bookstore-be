@@ -25,7 +25,6 @@ type ORDER struct {
 	OrderAt         time.Time     `json:"order_at"`
 	Status          string        `json:"status"`
 	Discount        uuid.NullUUID `json:"discount"`
-	TotalAmount     float64       `json:"total_amount"`
 	ShippingAddress string        `json:"shipping_address"`
 }
 

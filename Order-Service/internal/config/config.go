@@ -4,10 +4,11 @@ import "github.com/spf13/viper"
 
 // Config stores all configurations of the service
 type Config struct {
-	DBDriver   string `mapstructure:"DB_DRIVER"`
-	DBSource   string `mapstructure:"DB_SOURCE"`
-	ServerHost string `mapstructure:"SERVER_HOST"`
-	ServerPort string `mapstructure:"SERVER_PORT"`
+	DBDriver                 string `mapstructure:"DB_DRIVER"`
+	DBSource                 string `mapstructure:"DB_SOURCE"`
+	ServerHost               string `mapstructure:"SERVER_HOST"`
+	ServerPort               string `mapstructure:"SERVER_PORT"`
+	BookServiceServerAddress string `mapstructure:"BOOK_SERVICE_SERVER_ADDRESS"`
 }
 
 // LoadConfig reads all configurations from a configuration file

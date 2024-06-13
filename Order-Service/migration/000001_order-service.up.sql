@@ -6,7 +6,10 @@ CREATE TABLE "DISCOUNTS" (
     discount_value float NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    created_at timestamptz NOT NULL DEFAULT (now())
+    created_at timestamptz NOT NULL DEFAULT (now()),
+    CONSTRAINT check_discount_duration CHECK(
+        start_date < end_date
+    )
 );
 
 CREATE TABLE "ORDERS" (
@@ -15,9 +18,11 @@ CREATE TABLE "ORDERS" (
     order_at timestamptz NOT NULL DEFAULT (now()),
     status VARCHAR NOT NULL DEFAULT 'PENDING',
     discount UUID DEFAULT NULL,
-    total_amount float NOT NULL,
     shipping_address VARCHAR NOT NULL,
-    FOREIGN KEY (discount) REFERENCES Discounts(discount_id)
+    FOREIGN KEY (discount) REFERENCES "DISCOUNTS"(discount_id),
+    CONSTRAINT check_status CHECK(
+        status IN ('PENDING', 'PAYED', 'SHIPPED', 'PROCESSING')
+    )
 );
 
 CREATE TABLE "ORDER_DETAILS" (
@@ -26,7 +31,7 @@ CREATE TABLE "ORDER_DETAILS" (
     quantity INT NOT NULL,
     unit_price float NOT NULL,
     created_at timestamptz NOT NULL DEFAULT (now()),
-    FOREIGN KEY (order_id) REFERENCES Discounts(discount_id),
+    FOREIGN KEY (order_id) REFERENCES "ORDERS"(order_id),
     PRIMARY KEY (order_id, book_id)
 );
 
@@ -38,4 +43,8 @@ CREATE TABLE "SHOPPING_CART_ITEMS" (
     unit_price float NOT NULL,
     status VARCHAR NOT NULL DEFAULT 'ADDED',
     added_at timestamptz NOT NULL DEFAULT (now())
+    CONSTRAINT check_status CHECK(
+        status IN ('ADDED', 'REMOVED', 'ORDERED')
+    )
 );
+CREATE UNIQUE INDEX unique_user_book_added ON "SHOPPING_CART_ITEMS" (user_id, book_id) WHERE status = 'ADDED';

@@ -7,6 +7,7 @@ package db
 
 import (
 	"context"
+	"time"
 
 	"github.com/google/uuid"
 )
@@ -14,32 +15,22 @@ import (
 const createOrder = `-- name: CreateOrder :one
 INSERT INTO
     "ORDERS" (
-        order_id,
         user_id,
-        total_amount,
         shipping_address,
         discount
     )
 VALUES
-    ($1, $2, $3, $4, $5) RETURNING order_id, user_id, order_at, status, discount, total_amount, shipping_address
+    ($1, $2, $3) RETURNING order_id, user_id, order_at, status, discount, shipping_address
 `
 
 type CreateOrderParams struct {
-	OrderID         uuid.UUID     `json:"order_id"`
 	UserID          string        `json:"user_id"`
-	TotalAmount     float64       `json:"total_amount"`
 	ShippingAddress string        `json:"shipping_address"`
 	Discount        uuid.NullUUID `json:"discount"`
 }
 
 func (q *Queries) CreateOrder(ctx context.Context, arg CreateOrderParams) (ORDER, error) {
-	row := q.db.QueryRowContext(ctx, createOrder,
-		arg.OrderID,
-		arg.UserID,
-		arg.TotalAmount,
-		arg.ShippingAddress,
-		arg.Discount,
-	)
+	row := q.db.QueryRowContext(ctx, createOrder, arg.UserID, arg.ShippingAddress, arg.Discount)
 	var i ORDER
 	err := row.Scan(
 		&i.OrderID,
@@ -47,7 +38,6 @@ func (q *Queries) CreateOrder(ctx context.Context, arg CreateOrderParams) (ORDER
 		&i.OrderAt,
 		&i.Status,
 		&i.Discount,
-		&i.TotalAmount,
 		&i.ShippingAddress,
 	)
 	return i, err
@@ -92,23 +82,38 @@ func (q *Queries) CreateOrderDetail(ctx context.Context, arg CreateOrderDetailPa
 
 const getOrder = `-- name: GetOrder :one
 SELECT
-    order_id, user_id, order_at, status, discount, total_amount, shipping_address
+    o.order_id, o.user_id, o.order_at, o.status, o.discount, o.shipping_address,  CAST((SUM(OD.quantity * OD.unit_price) * COALESCE(D.discount_value, 1)) AS FLOAT) AS total_amount
 FROM
-    "ORDERS"
-WHERE order_id = $1
+    "ORDERS" AS O LEFT JOIN "ORDER_DETAILS" AS OD 
+    ON O.order_id = OD.order_id
+    LEFT JOIN "DISCOUNTS" AS D
+    ON O.discount = D.discount_id
+WHERE O.order_id = $1
+GROUP BY
+    O.order_id, D.discount_value
 `
 
-func (q *Queries) GetOrder(ctx context.Context, orderID uuid.UUID) (ORDER, error) {
+type GetOrderRow struct {
+	OrderID         uuid.UUID     `json:"order_id"`
+	UserID          string        `json:"user_id"`
+	OrderAt         time.Time     `json:"order_at"`
+	Status          string        `json:"status"`
+	Discount        uuid.NullUUID `json:"discount"`
+	ShippingAddress string        `json:"shipping_address"`
+	TotalAmount     float64       `json:"total_amount"`
+}
+
+func (q *Queries) GetOrder(ctx context.Context, orderID uuid.UUID) (GetOrderRow, error) {
 	row := q.db.QueryRowContext(ctx, getOrder, orderID)
-	var i ORDER
+	var i GetOrderRow
 	err := row.Scan(
 		&i.OrderID,
 		&i.UserID,
 		&i.OrderAt,
 		&i.Status,
 		&i.Discount,
-		&i.TotalAmount,
 		&i.ShippingAddress,
+		&i.TotalAmount,
 	)
 	return i, err
 }
@@ -185,34 +190,51 @@ func (q *Queries) ListOrderDetails(ctx context.Context, arg ListOrderDetailsPara
 
 const listOrders = `-- name: ListOrders :many
 SELECT
-    order_id, user_id, order_at, status, discount, total_amount, shipping_address
+    o.order_id, o.user_id, o.order_at, o.status, o.discount, o.shipping_address,  CAST((SUM(OD.quantity * OD.unit_price) * COALESCE(D.discount_value, 1)) AS FLOAT) AS total_amount
 FROM
-    "ORDERS"
-LIMIT $1 OFFSET $2
+    "ORDERS" AS O LEFT JOIN "ORDER_DETAILS" AS OD 
+    ON O.order_id = OD.order_id
+    LEFT JOIN "DISCOUNTS" AS D
+    ON O.discount = D.discount_id
+WHERE user_id = $1
+GROUP BY
+    O.order_id, D.discount_value
+LIMIT $2 OFFSET $3
 `
 
 type ListOrdersParams struct {
-	Limit  int32 `json:"limit"`
-	Offset int32 `json:"offset"`
+	UserID string `json:"user_id"`
+	Limit  int32  `json:"limit"`
+	Offset int32  `json:"offset"`
 }
 
-func (q *Queries) ListOrders(ctx context.Context, arg ListOrdersParams) ([]ORDER, error) {
-	rows, err := q.db.QueryContext(ctx, listOrders, arg.Limit, arg.Offset)
+type ListOrdersRow struct {
+	OrderID         uuid.UUID     `json:"order_id"`
+	UserID          string        `json:"user_id"`
+	OrderAt         time.Time     `json:"order_at"`
+	Status          string        `json:"status"`
+	Discount        uuid.NullUUID `json:"discount"`
+	ShippingAddress string        `json:"shipping_address"`
+	TotalAmount     float64       `json:"total_amount"`
+}
+
+func (q *Queries) ListOrders(ctx context.Context, arg ListOrdersParams) ([]ListOrdersRow, error) {
+	rows, err := q.db.QueryContext(ctx, listOrders, arg.UserID, arg.Limit, arg.Offset)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []ORDER
+	var items []ListOrdersRow
 	for rows.Next() {
-		var i ORDER
+		var i ListOrdersRow
 		if err := rows.Scan(
 			&i.OrderID,
 			&i.UserID,
 			&i.OrderAt,
 			&i.Status,
 			&i.Discount,
-			&i.TotalAmount,
 			&i.ShippingAddress,
+			&i.TotalAmount,
 		); err != nil {
 			return nil, err
 		}
@@ -225,34 +247,4 @@ func (q *Queries) ListOrders(ctx context.Context, arg ListOrdersParams) ([]ORDER
 		return nil, err
 	}
 	return items, nil
-}
-
-const listOrdersByUser = `-- name: ListOrdersByUser :one
-SELECT
-    order_id, user_id, order_at, status, discount, total_amount, shipping_address
-FROM
-    "ORDERS"
-WHERE user_id = $1
-LIMIT $2 OFFSET $3
-`
-
-type ListOrdersByUserParams struct {
-	UserID string `json:"user_id"`
-	Limit  int32  `json:"limit"`
-	Offset int32  `json:"offset"`
-}
-
-func (q *Queries) ListOrdersByUser(ctx context.Context, arg ListOrdersByUserParams) (ORDER, error) {
-	row := q.db.QueryRowContext(ctx, listOrdersByUser, arg.UserID, arg.Limit, arg.Offset)
-	var i ORDER
-	err := row.Scan(
-		&i.OrderID,
-		&i.UserID,
-		&i.OrderAt,
-		&i.Status,
-		&i.Discount,
-		&i.TotalAmount,
-		&i.ShippingAddress,
-	)
-	return i, err
 }

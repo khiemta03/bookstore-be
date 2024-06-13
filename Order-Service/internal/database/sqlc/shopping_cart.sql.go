@@ -9,6 +9,7 @@ import (
 	"context"
 
 	"github.com/google/uuid"
+	"github.com/lib/pq"
 )
 
 const createShoppingCartItem = `-- name: CreateShoppingCartItem :one
@@ -50,16 +51,49 @@ func (q *Queries) CreateShoppingCartItem(ctx context.Context, arg CreateShopping
 	return i, err
 }
 
-const getShoppingCartItem = `-- name: GetShoppingCartItem :one
+const getShoppingCartItemByUser = `-- name: GetShoppingCartItemByUser :one
 SELECT
     cart_item_id, user_id, book_id, quantity, unit_price, status, added_at
 FROM
     "SHOPPING_CART_ITEMS"
-WHERE cart_item_id = $1
+WHERE user_id = $1 and cart_item_id = $2 and status = 'ADDED'
 `
 
-func (q *Queries) GetShoppingCartItem(ctx context.Context, cartItemID uuid.UUID) (SHOPPINGCARTITEM, error) {
-	row := q.db.QueryRowContext(ctx, getShoppingCartItem, cartItemID)
+type GetShoppingCartItemByUserParams struct {
+	UserID     string    `json:"user_id"`
+	CartItemID uuid.UUID `json:"cart_item_id"`
+}
+
+func (q *Queries) GetShoppingCartItemByUser(ctx context.Context, arg GetShoppingCartItemByUserParams) (SHOPPINGCARTITEM, error) {
+	row := q.db.QueryRowContext(ctx, getShoppingCartItemByUser, arg.UserID, arg.CartItemID)
+	var i SHOPPINGCARTITEM
+	err := row.Scan(
+		&i.CartItemID,
+		&i.UserID,
+		&i.BookID,
+		&i.Quantity,
+		&i.UnitPrice,
+		&i.Status,
+		&i.AddedAt,
+	)
+	return i, err
+}
+
+const getShoppingCartItemByUserForUpdate = `-- name: GetShoppingCartItemByUserForUpdate :one
+SELECT
+    cart_item_id, user_id, book_id, quantity, unit_price, status, added_at
+FROM
+    "SHOPPING_CART_ITEMS"
+WHERE user_id = $1 and cart_item_id = $2 and status = 'ADDED' FOR UPDATE
+`
+
+type GetShoppingCartItemByUserForUpdateParams struct {
+	UserID     string    `json:"user_id"`
+	CartItemID uuid.UUID `json:"cart_item_id"`
+}
+
+func (q *Queries) GetShoppingCartItemByUserForUpdate(ctx context.Context, arg GetShoppingCartItemByUserForUpdateParams) (SHOPPINGCARTITEM, error) {
+	row := q.db.QueryRowContext(ctx, getShoppingCartItemByUserForUpdate, arg.UserID, arg.CartItemID)
 	var i SHOPPINGCARTITEM
 	err := row.Scan(
 		&i.CartItemID,
@@ -79,16 +113,18 @@ SELECT
 FROM
     "SHOPPING_CART_ITEMS"
 WHERE user_id = $1
-LIMIT $1 OFFSET $2
+and status = 'ADDED'
+LIMIT $2 OFFSET $3
 `
 
 type ListShoppingCartItemsByUserParams struct {
-	Limit  int32 `json:"limit"`
-	Offset int32 `json:"offset"`
+	UserID string `json:"user_id"`
+	Limit  int32  `json:"limit"`
+	Offset int32  `json:"offset"`
 }
 
 func (q *Queries) ListShoppingCartItemsByUser(ctx context.Context, arg ListShoppingCartItemsByUserParams) ([]SHOPPINGCARTITEM, error) {
-	rows, err := q.db.QueryContext(ctx, listShoppingCartItemsByUser, arg.Limit, arg.Offset)
+	rows, err := q.db.QueryContext(ctx, listShoppingCartItemsByUser, arg.UserID, arg.Limit, arg.Offset)
 	if err != nil {
 		return nil, err
 	}
@@ -116,4 +152,107 @@ func (q *Queries) ListShoppingCartItemsByUser(ctx context.Context, arg ListShopp
 		return nil, err
 	}
 	return items, nil
+}
+
+const updateShoppingCartItemListStatus = `-- name: UpdateShoppingCartItemListStatus :many
+UPDATE
+    "SHOPPING_CART_ITEMS" 
+SET
+    status = $1
+WHERE
+    cart_item_id = ANY($2::UUID[]) RETURNING cart_item_id, user_id, book_id, quantity, unit_price, status, added_at
+`
+
+type UpdateShoppingCartItemListStatusParams struct {
+	Status         string      `json:"status"`
+	CartItemIDList []uuid.UUID `json:"cart_item_id_list"`
+}
+
+func (q *Queries) UpdateShoppingCartItemListStatus(ctx context.Context, arg UpdateShoppingCartItemListStatusParams) ([]SHOPPINGCARTITEM, error) {
+	rows, err := q.db.QueryContext(ctx, updateShoppingCartItemListStatus, arg.Status, pq.Array(arg.CartItemIDList))
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SHOPPINGCARTITEM
+	for rows.Next() {
+		var i SHOPPINGCARTITEM
+		if err := rows.Scan(
+			&i.CartItemID,
+			&i.UserID,
+			&i.BookID,
+			&i.Quantity,
+			&i.UnitPrice,
+			&i.Status,
+			&i.AddedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const updateShoppingCartItemQuantity = `-- name: UpdateShoppingCartItemQuantity :one
+UPDATE
+    "SHOPPING_CART_ITEMS" 
+SET
+    quantity = $2
+WHERE
+    cart_item_id = $1 RETURNING cart_item_id, user_id, book_id, quantity, unit_price, status, added_at
+`
+
+type UpdateShoppingCartItemQuantityParams struct {
+	CartItemID uuid.UUID `json:"cart_item_id"`
+	Quantity   int32     `json:"quantity"`
+}
+
+func (q *Queries) UpdateShoppingCartItemQuantity(ctx context.Context, arg UpdateShoppingCartItemQuantityParams) (SHOPPINGCARTITEM, error) {
+	row := q.db.QueryRowContext(ctx, updateShoppingCartItemQuantity, arg.CartItemID, arg.Quantity)
+	var i SHOPPINGCARTITEM
+	err := row.Scan(
+		&i.CartItemID,
+		&i.UserID,
+		&i.BookID,
+		&i.Quantity,
+		&i.UnitPrice,
+		&i.Status,
+		&i.AddedAt,
+	)
+	return i, err
+}
+
+const updateShoppingCartItemStatus = `-- name: UpdateShoppingCartItemStatus :one
+UPDATE
+    "SHOPPING_CART_ITEMS" 
+SET
+    status = $1
+WHERE
+    cart_item_id = $2 RETURNING cart_item_id, user_id, book_id, quantity, unit_price, status, added_at
+`
+
+type UpdateShoppingCartItemStatusParams struct {
+	Status     string    `json:"status"`
+	CartItemID uuid.UUID `json:"cart_item_id"`
+}
+
+func (q *Queries) UpdateShoppingCartItemStatus(ctx context.Context, arg UpdateShoppingCartItemStatusParams) (SHOPPINGCARTITEM, error) {
+	row := q.db.QueryRowContext(ctx, updateShoppingCartItemStatus, arg.Status, arg.CartItemID)
+	var i SHOPPINGCARTITEM
+	err := row.Scan(
+		&i.CartItemID,
+		&i.UserID,
+		&i.BookID,
+		&i.Quantity,
+		&i.UnitPrice,
+		&i.Status,
+		&i.AddedAt,
+	)
+	return i, err
 }

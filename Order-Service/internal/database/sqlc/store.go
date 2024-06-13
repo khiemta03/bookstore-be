@@ -5,30 +5,37 @@ import (
 	"database/sql"
 	"fmt"
 
+	_ "github.com/golang/mock/mockgen/model"
 	ce "github.com/khiemta03/bookstore-be/order-service/internal/error"
 )
 
+type Store interface {
+	Querier
+	CreateOrderTx(ctx context.Context, arg CreateOrderTxParams) (CreateOrderTxResult, ce.CustomError)
+	RemoveItemTx(ctx context.Context, arg RemoveItemTxResult) (SHOPPINGCARTITEM, ce.CustomError)
+}
+
 // Store provides all functions to execute db queries and transactions
-type Store struct {
+type SQLStore struct {
 	db *sql.DB
 	*Queries
 }
 
 // NewStore creates a new store
-func NewStore(dbDriver, dbSource string) (*Store, error) {
+func NewStore(dbDriver, dbSource string) (Store, error) {
 	conn, err := sql.Open(dbDriver, dbSource)
 	if err != nil {
 		return nil, err
 	}
 
-	return &Store{
+	return &SQLStore{
 		db:      conn,
 		Queries: New(conn),
 	}, nil
 }
 
 // execTx excutes a function within a database transaction
-func (store *Store) execTx(ctx context.Context, fn func(*Queries) ce.CustomError) ce.CustomError {
+func (store *SQLStore) execTx(ctx context.Context, fn func(*Queries) ce.CustomError) ce.CustomError {
 	tx, err := store.db.BeginTx(ctx, nil)
 
 	if err != nil {
