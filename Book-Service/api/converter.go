@@ -69,7 +69,7 @@ func convertTimeToDate(time time.Time) *date.Date {
 	return &date.Date{
 		Year:  int32(time.Year()),
 		Month: int32(time.Month()),
-		Day:   int32(time.Month()),
+		Day:   int32(time.Day()),
 	}
 }
 

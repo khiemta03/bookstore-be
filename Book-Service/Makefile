@@ -1,5 +1,5 @@
 postgres:
-	docker run --name book-service-postgres12 -p 6003:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=book-service -d postgres:12-alpinecc
+	docker run --name book-service-postgres12 -p 6003:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=book-service -d postgres:12-alpine
 
 createdb:
 	docker exec -it book-service-postgres12 createdb --username=root --owner=root book-service-database
