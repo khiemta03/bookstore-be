@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package pb;
+
+import "book.proto";
+import "rpc_get_book.proto";
+import "rpc_add_book.proto";
+import "rpc_list_books.proto";
+import "rpc_update_book.proto";
+
+import "author.proto";
+import "rpc_add_author.proto";
+import "rpc_get_author.proto";
+import "rpc_update_author.proto";
+
+import "publisher.proto";
+import "rpc_add_publisher.proto";
+import "rpc_get_publisher.proto";
+import "rpc_update_publisher.proto";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/book-service/internal/grpc/gen/book;pb";
+
+service BookService {
+    rpc GetBook (GetBookRequest) returns (Book) {};
+    rpc ListBooks (ListBooksRequest) returns (stream Book) {};
+    rpc GetAuthor (GetAuthorRequest) returns (Author) {};
+    rpc GetPublisher (GetPublisherRequest) returns (Publisher) {};
+
+    rpc AddNewBook (AddNewBookRequest) returns (Book) {};
+    rpc AddNewAuthor (AddNewAuthorRequest) returns (Author) {};
+    rpc AddNewPublisher (AddNewPublisherRequest) returns (Publisher) {};
+
+    rpc UpdateBook (UpdateBookRequest) returns (google.protobuf.Empty) {};
+    rpc UpdateAuthor (UpdateAuthorRequest) returns (google.protobuf.Empty) {};
+    rpc UpdatePublisher (UpdatePublisherRequest) returns (google.protobuf.Empty) {};
+}
+

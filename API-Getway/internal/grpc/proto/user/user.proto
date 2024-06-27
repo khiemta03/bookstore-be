@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/user-service/internal/grpc/user/pb";
+
+message User {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string fullname = 4;
+    string phone = 5;
+    string address = 6;
+    google.protobuf.Timestamp created_at = 7;
+}

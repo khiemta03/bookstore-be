@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pb;
+
+import "access_token.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/authentication-service/internal/grpc/authentication/pb";
+
+message RenewAccessTokenRequest {
+    string refresh_token = 1;
+}
+
+message RenewAccessTokenResponse {
+    AccessToken access_token = 1; 
+}
+

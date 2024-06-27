@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pb;
+
+import "order.proto";
+import "shopping_cart_item.proto";
+import "rpc_get_order.proto";
+import "rpc_add_shopping_cart_item.proto";
+import "rpc_create_order.proto";
+import "rpc_remove_shopping_cart_item.proto";
+import "rpc_get_shopping_cart_item.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/order/pb;pb";
+
+service OrderService {
+    rpc GetOrderByUser (GetOrderRequest) returns (Order) {};
+    rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse) {};
+    rpc AddNewItem (AddNewItemRequest) returns (ShoppingCartItem) {};
+    rpc RemoveItem (RemoveItemRequest) returns (RemoveItemResponse) {};
+    rpc GetItem (GetShoppingCartItemRequest) returns (ShoppingCartItem) {};
+}
+
