@@ -1,11 +1,11 @@
 # bookstore-be
 
 This project provides APIs for online book stores by applying [Microservices Architecture](https://microservices.io/). There are five primary services included:
-  - User Service: used to manage information related to users.
-  - Authentication Service: authenticates users before using other features.
-  - Book Service: used to manage information about books, authors, and publishers.
-  - Order Service: manages and handles order requests.
-  - API Getway: the main broker between other services.
+  - **User Service**: used to manage information related to users.
+  - **Authentication Service**: authenticates users before using other features.
+  - **Book Service**: used to manage information about books, authors, and publishers.
+  - **Order Service**: manages and handles order requests.
+  - **API Getway**: the main broker between other services.
 
 
 ## Tech Stack
