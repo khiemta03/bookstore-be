@@ -1,13 +1,20 @@
 # bookstore-be
 
-This is a project that offers an online book store related APIs. 
+This project provides APIs for online book stores by applying [Microservices Architecture](https://microservices.io/). It includes 5 main services:
+  - User Service: used to manage user information.
+  - Authentication Service: authenticates user before using other features.
+  - Book Service: used to manage book, author, and publisher information.
+  - Order Service: manages and handles order requests.
+  - API Getway: the main broker between other services.
 
 
 ## Tech Stack
 
-**Server:** Gin (Golang), gRPC, SQLC, REST API, Microservices Architecture
+**Server:** Gin (Golang), gRPC, SQLC, REST API, Microservices Architecture, JSON Web Token
 
 **Testing**: Go Mock, Postman
+
+**Documentation**: Postman
 
 **Deployment**: Docker
 
