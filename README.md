@@ -17,7 +17,7 @@ This is a project that offers an online book store related APIs.
 
 #### Get Specified User
 
-```http
+```
   GET {BASE_URL}/users/:id
 ```
 
@@ -27,7 +27,7 @@ This is a project that offers an online book store related APIs.
 
 #### Get Specified Book
 
-```http
+```
   GET /api/books/${id}
 ```
 
@@ -37,11 +37,11 @@ This is a project that offers an online book store related APIs.
 
 #### Add New Item Into The Shopping Cart
 
-```http
+```
   POST /api/items
 ```
 
-| Body Parameter | Type     | Description                       |
+| Body Field | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `book_id`      | `string` | **Required**. Id of book to add |
 | `quantity`      | `int` | **Required**. Quantity of book to add |
