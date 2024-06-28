@@ -28,7 +28,7 @@ This is a project that offers an online book store related APIs.
 #### Get Specified Book
 
 ```
-  GET {BASE_URL}/books/${id}
+  GET {BASE_URL}/books/:id
 ```
 
 | Parameter | Type     | Description                       |
@@ -64,7 +64,7 @@ Firstly, clone this repository to your local machine:
 ```
 
 ### Run with Docker (Recommended)
-To run all projects using Docker, make sure Docker is installed on your machine or you can download at [Docker](https://www.docker.com/):
+To run all projects using Docker, ensure Docker is installed on your machine. If it's not installed yet, you can download it from [Docker's official website](https://www.docker.com/):
 
 #### Start Docker Compose
 ```bash
