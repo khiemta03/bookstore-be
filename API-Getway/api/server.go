@@ -21,6 +21,7 @@ func NewServer(config *config.Config) *Server {
 			UserServiceAddress: config.UserServiceAddress,
 			AuthServiceAddress: config.AuthenticationServiceAddress,
 			BookServiceAddress: config.BookServiceAddress,
+			OrderServiceAddress: config.OrderServiceAddress,
 		}),
 		router: gin.Default(),
 		config: config,

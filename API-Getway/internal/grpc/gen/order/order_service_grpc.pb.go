@@ -27,6 +27,7 @@ type OrderServiceClient interface {
 	AddNewItem(ctx context.Context, in *AddNewItemRequest, opts ...grpc.CallOption) (*ShoppingCartItem, error)
 	RemoveItem(ctx context.Context, in *RemoveItemRequest, opts ...grpc.CallOption) (*RemoveItemResponse, error)
 	GetItem(ctx context.Context, in *GetShoppingCartItemRequest, opts ...grpc.CallOption) (*ShoppingCartItem, error)
+	ListItems(ctx context.Context, in *ListShoppingCartItemsRequest, opts ...grpc.CallOption) (OrderService_ListItemsClient, error)
 }
 
 type orderServiceClient struct {
@@ -82,6 +83,38 @@ func (c *orderServiceClient) GetItem(ctx context.Context, in *GetShoppingCartIte
 	return out, nil
 }
 
+func (c *orderServiceClient) ListItems(ctx context.Context, in *ListShoppingCartItemsRequest, opts ...grpc.CallOption) (OrderService_ListItemsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &OrderService_ServiceDesc.Streams[0], "/pb.OrderService/ListItems", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &orderServiceListItemsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type OrderService_ListItemsClient interface {
+	Recv() (*ShoppingCartItem, error)
+	grpc.ClientStream
+}
+
+type orderServiceListItemsClient struct {
+	grpc.ClientStream
+}
+
+func (x *orderServiceListItemsClient) Recv() (*ShoppingCartItem, error) {
+	m := new(ShoppingCartItem)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // OrderServiceServer is the server API for OrderService service.
 // All implementations must embed UnimplementedOrderServiceServer
 // for forward compatibility
@@ -91,6 +124,7 @@ type OrderServiceServer interface {
 	AddNewItem(context.Context, *AddNewItemRequest) (*ShoppingCartItem, error)
 	RemoveItem(context.Context, *RemoveItemRequest) (*RemoveItemResponse, error)
 	GetItem(context.Context, *GetShoppingCartItemRequest) (*ShoppingCartItem, error)
+	ListItems(*ListShoppingCartItemsRequest, OrderService_ListItemsServer) error
 	mustEmbedUnimplementedOrderServiceServer()
 }
 
@@ -112,6 +146,9 @@ func (UnimplementedOrderServiceServer) RemoveItem(context.Context, *RemoveItemRe
 }
 func (UnimplementedOrderServiceServer) GetItem(context.Context, *GetShoppingCartItemRequest) (*ShoppingCartItem, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetItem not implemented")
+}
+func (UnimplementedOrderServiceServer) ListItems(*ListShoppingCartItemsRequest, OrderService_ListItemsServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListItems not implemented")
 }
 func (UnimplementedOrderServiceServer) mustEmbedUnimplementedOrderServiceServer() {}
 
@@ -216,6 +253,27 @@ func _OrderService_GetItem_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderService_ListItems_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ListShoppingCartItemsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(OrderServiceServer).ListItems(m, &orderServiceListItemsServer{stream})
+}
+
+type OrderService_ListItemsServer interface {
+	Send(*ShoppingCartItem) error
+	grpc.ServerStream
+}
+
+type orderServiceListItemsServer struct {
+	grpc.ServerStream
+}
+
+func (x *orderServiceListItemsServer) Send(m *ShoppingCartItem) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // OrderService_ServiceDesc is the grpc.ServiceDesc for OrderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -244,6 +302,12 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OrderService_GetItem_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ListItems",
+			Handler:       _OrderService_ListItems_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "order_service.proto",
 }

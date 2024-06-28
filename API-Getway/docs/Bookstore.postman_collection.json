@@ -46,12 +46,11 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/users/7cc182db-5288-4586-984f-cf170fd0a89d",
+									"raw": "http://{{BASE_URL}}/users/7cc182db-5288-4586-984f-cf170fd0a89d",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"users",
 										"7cc182db-5288-4586-984f-cf170fd0a89d"
@@ -123,12 +122,11 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/users?page=2&per_page=2",
+									"raw": "http://{{BASE_URL}}/users?page=2&per_page=2",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"users"
 									],
@@ -226,12 +224,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/register",
+									"raw": "http://{{BASE_URL}}/register",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"register"
 									]
@@ -314,12 +311,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/renew-token",
+									"raw": "http://{{BASE_URL}}/renew-token",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"renew-token"
 									]
@@ -388,12 +384,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/login",
+									"raw": "http://{{BASE_URL}}/login",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"login"
 									]
@@ -434,12 +429,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://{{BASE_URL}}/books?page=1&per_page=2",
+							"raw": "http://{{BASE_URL}}/books?page=1&per_page=3",
 							"protocol": "http",
 							"host": [
 								"{{BASE_URL}}"
@@ -454,7 +449,7 @@
 								},
 								{
 									"key": "per_page",
-									"value": "2"
+									"value": "3"
 								}
 							]
 						}
@@ -472,12 +467,11 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/books?page=1&per_page=2",
+									"raw": "http://{{BASE_URL}}/books?page=1&per_page=2",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"books"
 									],
@@ -568,12 +562,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/books",
+									"raw": "http://{{BASE_URL}}/books",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"books"
 									]
@@ -654,12 +647,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/publishers",
+									"raw": "http://{{BASE_URL}}/publishers",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"publishers"
 									]
@@ -723,12 +715,11 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/publishers/4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba",
+									"raw": "http://{{BASE_URL}}/publishers/4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"publishers",
 										"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba"
@@ -793,12 +784,11 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/authors/6c3f605a-6927-4ac8-bc6a-eea3adc0a024",
+									"raw": "http://{{BASE_URL}}/authors/6c3f605a-6927-4ac8-bc6a-eea3adc0a024",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"authors",
 										"6c3f605a-6927-4ac8-bc6a-eea3adc0a024"
@@ -880,12 +870,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/authors",
+									"raw": "http://{{BASE_URL}}/authors",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"authors"
 									]
@@ -949,12 +938,11 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/books/d03afb6e-0531-4f0c-ac96-ee7377a66b33",
+									"raw": "http://{{BASE_URL}}/books/d03afb6e-0531-4f0c-ac96-ee7377a66b33",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{BASE_URL}}"
 									],
-									"port": "3000",
 									"path": [
 										"books",
 										"d03afb6e-0531-4f0c-ac96-ee7377a66b33"
@@ -980,6 +968,467 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n    \"title\": \"Nhung ngoi sao xa soi\",\n    \"full_title\": \"Nhung ngoi sao xa soi\",\n    \"publisher\": {\n        \"id\": \"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba\",\n        \"name\": \"Ta Ngoc Duy Khiem\",\n        \"address\": \"Ho Chi Minh City\"\n    },\n    \"publication_date\": {\n        \"year\": 2023,\n        \"month\": 2,\n        \"day\": 14\n    },\n    \"isbn\": \"0421521521161\",\n    \"description\": \"Hay lam nha\",\n    \"price\": 10.2,\n    \"stock_quantity\": 120,\n    \"front_cover_image\": \"front_cover_image\",\n    \"back_cover_image\": \"back_cover_image\",\n    \"authors\": [\n        {\n            \"id\": \"6c3f605a-6927-4ac8-bc6a-eea3adc0a024\",\n            \"full_name\": \"Vo Tran Anh Tai\",\n            \"birth_date\": {\n                \"year\": 1964,\n                \"month\": 2,\n                \"day\": 15\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Add Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": \"7bdd3169-2482-44d6-b788-1176bbde6ecf\",\n    \"quantity\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/items",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Item",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n    \"quantity\": 50\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/items",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:36:21 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart_item_id\": \"4feffdba-d51c-49db-846c-aaa3fa4cc692\",\n    \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n    \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n    \"quantity\": 50,\n    \"unit_price\": 10.2\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shipping_address\": \"Ho Chi Minh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/orders",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"shipping_address\": \"Ho Chi Minh\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/orders",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:36:45 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "543"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"order\": {\n        \"order_id\": \"ae4c7ff1-9b72-46f2-b173-c94341c441ca\",\n        \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n        \"order_at\": {\n            \"seconds\": 1719553005,\n            \"nanos\": 817034000\n        },\n        \"status\": \"PENDING\",\n        \"total_amount\": 509.99999999999994,\n        \"shipping_address\": \"Ho Chi Minh\"\n    },\n    \"discount\": {\n        \"discount_id\": \"00000000-0000-0000-0000-000000000000\",\n        \"start_date\": {\n            \"seconds\": -62135596800\n        },\n        \"end_date\": {\n            \"seconds\": -62135596800\n        }\n    },\n    \"order_detail_list\": [\n        {\n            \"order_id\": \"ae4c7ff1-9b72-46f2-b173-c94341c441ca\",\n            \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n            \"quantity\": 50,\n            \"unit_price\": 10.2\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM3ZWQ0ZWJiLTQ3MTAtNDhmMS1hNzU4LTQyOWFiNWM4YTc5OSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozOTo1NS4xNzc0MjMrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo1NDo1NS4xNzc0MjMrMDc6MDAifQ.r95mLKY3DrPq5u9tixnuKPLb7C2dNRWrRtiNQeZDuzQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/orders/ae4c7ff1-9b72-46f2-b173-c94341c441ca",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders",
+								"ae4c7ff1-9b72-46f2-b173-c94341c441ca"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM3ZWQ0ZWJiLTQ3MTAtNDhmMS1hNzU4LTQyOWFiNWM4YTc5OSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozOTo1NS4xNzc0MjMrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo1NDo1NS4xNzc0MjMrMDc6MDAifQ.r95mLKY3DrPq5u9tixnuKPLb7C2dNRWrRtiNQeZDuzQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/orders/ae4c7ff1-9b72-46f2-b173-c94341c441ca",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders",
+										"ae4c7ff1-9b72-46f2-b173-c94341c441ca"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:41:32 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"order_id\": \"ae4c7ff1-9b72-46f2-b173-c94341c441ca\",\n    \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n    \"order_at\": {\n        \"seconds\": 1719553005,\n        \"nanos\": 817034000\n    },\n    \"status\": \"PENDING\",\n    \"total_amount\": 509.99999999999994,\n    \"shipping_address\": \"Ho Chi Minh\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Item",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/items/b22b3556-dc38-4fb5-887f-6e6ce95b93f3",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"items",
+								"b22b3556-dc38-4fb5-887f-6e6ce95b93f3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Item",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/items/b22b3556-dc38-4fb5-887f-6e6ce95b93f3",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"items",
+										"b22b3556-dc38-4fb5-887f-6e6ce95b93f3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:43:18 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart_item_id\": \"b22b3556-dc38-4fb5-887f-6e6ce95b93f3\",\n    \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n    \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n    \"quantity\": 10,\n    \"unit_price\": 10.2\n}"
+						}
+					]
+				},
+				{
+					"name": "List Items",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/items?",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"items"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Items",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/items?",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"items"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:45:21 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "373"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"cart_item_id\": \"f4159e86-1116-4c26-8fa4-6d6dc1732f0f\",\n        \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n        \"book_id\": \"7bdd3169-2482-44d6-b788-1176bbde6ecf\",\n        \"quantity\": 10,\n        \"unit_price\": 10.2\n    },\n    {\n        \"cart_item_id\": \"b22b3556-dc38-4fb5-887f-6e6ce95b93f3\",\n        \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n        \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n        \"quantity\": 10,\n        \"unit_price\": 10.2\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Remove Item",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/items/f4159e86-1116-4c26-8fa4-6d6dc1732f0f",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"items",
+								"f4159e86-1116-4c26-8fa4-6d6dc1732f0f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Remove Item",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/items/f4159e86-1116-4c26-8fa4-6d6dc1732f0f",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"items",
+										"f4159e86-1116-4c26-8fa4-6d6dc1732f0f"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:46:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccessful\": true\n}"
 						}
 					]
 				}
