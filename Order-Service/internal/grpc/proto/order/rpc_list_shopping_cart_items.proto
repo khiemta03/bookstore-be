@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/order/pb";
+
+message ListShoppingCartItemsRequest {
+    string user_id = 1;
+    int32 page = 2;
+    int32 per_page = 3;
+}

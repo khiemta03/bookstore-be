@@ -3,7 +3,6 @@ module github.com/khiemta03/bookstore-be/order-service
 go 1.22.1
 
 require (
-	github.com/golang/protobuf v1.5.4
 	github.com/google/uuid v1.6.0
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.9.0

@@ -58,7 +58,6 @@ func (server *Server) CreateOrder(ctx context.Context, req *pb.CreateOrderReques
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, ce.ErrInternalServerStr)
 	}
-
 	// TODO: send message to Book Service
 	result, err := server.bookServiceClient.DecreaseStockQuantity(ctx, convertedCartItemSentToBookService)
 	if err != nil {
@@ -80,8 +79,6 @@ func (server *Server) CreateOrder(ctx context.Context, req *pb.CreateOrderReques
 
 		return nil, status.Errorf(codes.Internal, ce.ErrInternalServerStr)
 	}
-
-	fmt.Println(result)
 
 	for i := range cartItemList {
 		cartItemList[i].UnitPrice = result[i].UnitPrice
