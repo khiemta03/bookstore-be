@@ -16,7 +16,7 @@ func (server *Server) validateTokenMiddleware(ctx *gin.Context) {
 		return
 	}
 
-	_, err := server.client.ValidateToken(&pb.ValidateTokenRequest{
+	res, err := server.client.ValidateToken(&pb.ValidateTokenRequest{
 		Token: token,
 	})
 
@@ -25,6 +25,7 @@ func (server *Server) validateTokenMiddleware(ctx *gin.Context) {
 		ctx.Abort()
 		return
 	}
+	ctx.Set("UserId", res.UserId)
 
 	ctx.Next()
 }

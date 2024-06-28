@@ -15,32 +15,32 @@ func (server *Server) ValidateToken(ctx context.Context, req *pb.ValidateTokenRe
 
 	payload, err := server.tokenMaker.ValidateToken(token)
 	if err != nil {
-		return &pb.ValidateTokenResponse{IsChecked: true}, fmt.Errorf(errors.InvalidAgrumentError)
+		return nil, fmt.Errorf(errors.InvalidAgrumentError)
 	}
 
 	dbAccessToken, err := server.store.GetAccessToken(ctx, payload.ID)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return &pb.ValidateTokenResponse{IsChecked: true}, fmt.Errorf(errors.InvalidAgrumentError)
+			return nil, fmt.Errorf(errors.InvalidAgrumentError)
 		}
-		return &pb.ValidateTokenResponse{IsChecked: false}, fmt.Errorf(errors.InternalServerError)
+		return nil, fmt.Errorf(errors.InternalServerError)
 	}
 
 	session, err := server.store.GetSession(ctx, dbAccessToken.SessionID)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return &pb.ValidateTokenResponse{IsChecked: true}, fmt.Errorf(errors.InvalidAgrumentError)
+			return nil, fmt.Errorf(errors.InvalidAgrumentError)
 		}
-		return &pb.ValidateTokenResponse{IsChecked: false}, fmt.Errorf(errors.InternalServerError)
+		return nil, fmt.Errorf(errors.InternalServerError)
 	}
 
 	if session.Status != "Active" {
-		return &pb.ValidateTokenResponse{IsChecked: true}, fmt.Errorf(errors.InvalidAgrumentError)
+		return nil, fmt.Errorf(errors.InvalidAgrumentError)
 	}
 
 	if time.Now().After(dbAccessToken.ExpiresAt) {
-		return &pb.ValidateTokenResponse{IsChecked: true}, fmt.Errorf(errors.InvalidAgrumentError)
+		return nil, fmt.Errorf(errors.InvalidAgrumentError)
 	}
 
-	return &pb.ValidateTokenResponse{IsChecked: true}, nil
+	return &pb.ValidateTokenResponse{UserId: session.UserID}, nil
 }

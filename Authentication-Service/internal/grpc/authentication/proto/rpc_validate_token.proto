@@ -9,6 +9,6 @@ message ValidateTokenRequest {
 }
 
 message ValidateTokenResponse {
-    bool isChecked = 1; 
+    string user_id = 1;
 }
 
