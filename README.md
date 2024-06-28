@@ -28,7 +28,7 @@ This is a project that offers an online book store related APIs.
 #### Get Specified Book
 
 ```
-  GET /api/books/${id}
+  GET {BASE_URL}/books/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -38,7 +38,7 @@ This is a project that offers an online book store related APIs.
 #### Add New Item Into The Shopping Cart
 
 ```
-  POST /api/items
+  POST {BASE_URL}/items
 ```
 
 | Body Field | Type     | Description                       |
