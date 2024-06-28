@@ -16,14 +16,16 @@ type Server struct {
 
 // NewServer creates a new HTTP server
 func NewServer(config *config.Config) *Server {
+	router := gin.Default()
+
 	server := &Server{
 		client: client.NewClient(client.Config{
-			UserServiceAddress: config.UserServiceAddress,
-			AuthServiceAddress: config.AuthenticationServiceAddress,
-			BookServiceAddress: config.BookServiceAddress,
+			UserServiceAddress:  config.UserServiceAddress,
+			AuthServiceAddress:  config.AuthenticationServiceAddress,
+			BookServiceAddress:  config.BookServiceAddress,
 			OrderServiceAddress: config.OrderServiceAddress,
 		}),
-		router: gin.Default(),
+		router: router,
 		config: config,
 	}
 

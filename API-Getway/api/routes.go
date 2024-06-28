@@ -1,6 +1,12 @@
 package api
 
+import "github.com/gin-gonic/gin"
+
 func (server *Server) InitRoutes() {
+	server.router.GET("/postman", func(c *gin.Context) {
+		c.File("public/docs/postman.json")
+	})
+
 	server.router.POST("/login", server.login)
 	server.router.POST("/register", server.register)
 	server.router.POST("/renew-token", server.renewToken)
