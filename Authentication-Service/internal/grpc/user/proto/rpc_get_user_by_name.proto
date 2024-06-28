@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/authentication-service/internal/grpc/user/pb";
+
+message GetUserByNameRequest {
+    string username = 1;
+}

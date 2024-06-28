@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/order/pb";
+
+message RemoveItemRequest {
+    string user_id = 1;
+    string cart_item_id = 2;
+}
+
+message RemoveItemResponse {
+    bool isSuccessful = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/authentication-service/internal/grpc/user/pb";
+
+message CreateUserRequest {
+    string username = 1;
+    string password = 2;
+    string email = 3;
+    string fullname = 4;
+    string phone = 5;
+    string address = 6;
+}

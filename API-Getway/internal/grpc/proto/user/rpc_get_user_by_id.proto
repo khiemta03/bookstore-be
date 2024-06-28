@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/user-service/internal/grpc/user/pb";
+
+message GetUserByIdRequest {
+    string id = 1;
+}

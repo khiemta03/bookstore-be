@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/authentication-service/internal/grpc/authentication/pb";
+
+message Session {
+    string session_id = 1;
+    string refresh_token = 2;
+    google.protobuf.Timestamp expires_at = 3;
+}

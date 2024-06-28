@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package pb;
+
+import "session.proto";
+import "access_token.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/authentication-service/internal/grpc/authentication/pb";
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+    string user_agent = 3;
+    string client_ip = 4;
+}
+
+message LoginResponse {
+    Session session = 1;
+    AccessToken access_token = 2; 
+}
+

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package pb;
+
+import "order.proto";
+import "discount.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/order/pb";
+
+message CreateOrderRequest {
+    string user_id = 1;
+    optional string discount = 2 ;
+    string shipping_address = 3;
+}
+
+message CreateOrderResponse {
+   Order order = 1;
+   optional Discount discount = 2;
+   repeated OrderDetail order_detail_list = 3;
+}

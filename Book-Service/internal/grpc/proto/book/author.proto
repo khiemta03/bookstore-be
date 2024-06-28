@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package pb;
+
+import "date.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/book-service/internal/grpc/gen/book;pb";
+
+message Author {
+    string id = 1;
+    string full_name = 2;
+    google.type.Date birth_date = 3;
+}

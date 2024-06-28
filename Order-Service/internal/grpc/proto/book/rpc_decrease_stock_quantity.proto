@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/gen/book;pb";
+
+message DecreaseStockQuantityRequest {
+    string book_id = 1;
+    int32 quantity = 2;
+}
+
+message DecreaseStockQuantityResponse {
+    string book_id = 1;
+    int32 quantity = 2;
+    double unit_price = 3;
+}

@@ -1,0 +1,1479 @@
+{
+	"info": {
+		"_postman_id": "95a94ad1-f901-49f6-9dbf-329b132de6a9",
+		"name": "Bookstore",
+		"description": "# 📄 Get started here\n\nThis template contains a boilerplate for documentation that you can quickly customize and reuse.\n\n## 🔖 How to use this template\n\n- Replace the content given brackets (()) with your API's details.\n- Tips are formatted in `codespan` - feel free to read and remove them.\n    \n\n---\n\n`Start with a brief overview of what your API offers.`\n\nThe ((product name)) provides many API products, tools, and resources that enable you to ((add product value here)).\n\n`You can also list the APIs you offer, link to the relevant pages, or do both in this section.`\n\n## **Getting started guide**\n\n`List the steps or points required to start using your APIs. Make sure to cover everything required to reach success with your API as quickly as possible.`\n\nTo start using the ((add APIs here)), you need to -\n\n`The points given below are from The Postman API's documentation. You can reference it to write your own getting started guide.`\n\n- You must use a valid API Key to send requests to the API endpoints. You can get your API key from Postman's [integrations dashboard](https://go.postman.co/settings/me/api-keys).\n- The API has [rate and usage limits](https://learning.postman.com/docs/developer/postman-api/postman-api-rate-limits/).\n- The API only responds to HTTPS-secured communications. Any requests sent via HTTP return an HTTP 301 redirect to the corresponding HTTPS resources.\n- The API returns request responses in JSON format. When an API request returns an error, it is sent in the JSON response as an error key.\n    \n\n## Authentication\n\n`Add details on the authorization keys/tokens required, steps that cover how to get them, and the relevant error codes.`\n\nThe ((product name)) API uses ((add your API's authorization type)) for authentication.\n\n`The details given below are from the Postman API's documentation. You can reference it to write your own authentication section.`\n\nPostman uses API keys for authentication. You can generate a Postman API key in the [API keys](https://postman.postman.co/settings/me/api-keys) section of your Postman account settings.\n\nYou must include an API key in each request to the Postman API with the X-Api-Key request header.\n\n### Authentication error response\n\nIf an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.\n\n## Rate and usage limits\n\n`Use this section to cover your APIs' terms of use. Include API limits, constraints, and relevant error codes, so consumers understand the permitted API usage and practices.`\n\n`The example given below is from The Postman API's documentation. Use it as a reference to write your APIs' terms of use.`\n\nAPI access rate limits apply at a per-API key basis in unit time. The limit is 300 requests per minute. Also, depending on your plan, you may have usage limits. If you exceed either limit, your request will return an HTTP 429 Too Many Requests status code.\n\nEach API response returns the following set of headers to help you identify your use status:\n\n| Header | Description |\n| --- | --- |\n| `X-RateLimit-Limit` | The maximum number of requests that the consumer is permitted to make per minute. |\n| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window. |\n| `X-RateLimit-Reset` | The time at which the current rate limit window resets in UTC epoch seconds. |\n\n### 503 response\n\nAn HTTP `503` response from our servers indicates there is an unexpected spike in API access traffic. The server is usually operational within the next five minutes. If the outage persists or you receive any other form of an HTTP `5XX` error, [contact support](https://support.postman.com/hc/en-us/requests/new/).\n\n### **Need some help?**\n\n`Add links that customers can refer to whenever they need help.`\n\nIn case you have questions, go through our tutorials ((link to your video or help documentation here)). Or visit our FAQ page ((link to the relevant page)).\n\nOr you can check out our community forum, there’s a good chance our community has an answer for you. Visit our developer forum ((link to developer forum)) to review topics, ask questions, and learn from others.\n\n`You can also document or add links to libraries, code examples, and other resources needed to make a request.`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36383818"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/users/7cc182db-5288-4586-984f-cf170fd0a89d",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"7cc182db-5288-4586-984f-cf170fd0a89d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/users/7cc182db-5288-4586-984f-cf170fd0a89d",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"7cc182db-5288-4586-984f-cf170fd0a89d"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:30:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "221"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7cc182db-5288-4586-984f-cf170fd0a89d\",\n    \"username\": \"duykhiem\",\n    \"email\": \"tndkhiem123@gmail.com\",\n    \"fullname\": \"Ta Ngoc Duy Khiem\",\n    \"phone\": \"0952123321\",\n    \"address\": \"HCM\",\n    \"created_at\": {\n        \"seconds\": 1718696416,\n        \"nanos\": 760136000\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/users?page=2&per_page=2",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "per_page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/users?page=2&per_page=2",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "per_page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:30:25 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "452"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"7cc182db-5288-4586-984f-cf170fd0a89d\",\n        \"username\": \"duykhiem\",\n        \"email\": \"tndkhiem123@gmail.com\",\n        \"fullname\": \"Ta Ngoc Duy Khiem\",\n        \"phone\": \"0952123321\",\n        \"address\": \"HCM\",\n        \"created_at\": {\n            \"seconds\": 1718696416,\n            \"nanos\": 760136000\n        }\n    },\n    {\n        \"id\": \"83779415-ef46-4011-a4a2-44f904466112\",\n        \"username\": \"duykhiem321\",\n        \"email\": \"tndkhiem321@gmail.com\",\n        \"fullname\": \"tndkhiem321@gmail.com\",\n        \"phone\": \"0952123321\",\n        \"address\": \"HCM\",\n        \"created_at\": {\n            \"seconds\": 1718703047,\n            \"nanos\": 914569000\n        }\n    }\n]"
+						}
+					]
+				}
+			],
+			"description": "The `/me` endpoints let you manage information about the authenticated user."
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"kt123123\",\n    \"password\": \"123456\",\n    \"repeated_password\": \"123456\",\n    \"email\": \"kt@gmail.com\",\n    \"address\": \"Ho Chi Minh City\",\n    \"full_name\": \"Ta Ngoc Duy Khiem\",\n    \"phone\": \"0952125612\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/register",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"kt123123\",\n    \"password\": \"123456\",\n    \"repeated_password\": \"123456\",\n    \"email\": \"kt@gmail.com\",\n    \"address\": \"Ho Chi Minh City\",\n    \"full_name\": \"Ta Ngoc Duy Khiem\",\n    \"phone\": \"0952125612\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/register",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:18:08 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "900"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"session\": {\n        \"session_id\": \"ed5731f4-ffbe-41b3-9904-d09000697289\",\n        \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVkNTczMWY0LWZmYmUtNDFiMy05OTA0LWQwOTAwMDY5NzI4OSIsInVzZXJfaWQiOiIxMmFiZGNhZS1lZGNlLTQyMmEtOWQyZS0wM2Q4OTVkNmUzYmEiLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoxODowOC40NzM5NSswNzowMCIsImV4cGlyZWRfYXQiOiIyMDI0LTA2LTI3VDE3OjE4OjA4LjQ3Mzk1KzA3OjAwIn0.a7yj2cpaFXPrA0gXRDIY3n9ZShtQrgFDFJutqmdAB7Y\",\n        \"expires_at\": {\n            \"seconds\": 1719483488,\n            \"nanos\": 474025000\n        }\n    },\n    \"access_token\": {\n        \"access_token_value\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVhYWQ2MmIwLTE5ZGQtNGM4ZC1iOTA5LTcxOTVkNDZkZGU1NSIsInVzZXJfaWQiOiIxMmFiZGNhZS1lZGNlLTQyMmEtOWQyZS0wM2Q4OTVkNmUzYmEiLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoxODowOC40NzQwMDMrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzozMzowOC40NzQwMDMrMDc6MDAifQ.bAgTqnEozy4G-oSb96bv5DYvrCmd_anPpG-uMS7Z_u8\",\n        \"expires_at\": {\n            \"seconds\": 1719397988,\n            \"nanos\": 474025000\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Renew Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwMDEwYmFlLTRmYmMtNGI3Yy1iNjRmLWY0MWNmNzdkNDk2NiIsInVzZXJfaWQiOiI4Mzc3OTQxNS1lZjQ2LTQwMTEtYTRhMi00NGY5MDQ0NjYxMTIiLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0xOFQxNjozMDo0Ny45MjI0NCswNzowMCIsImV4cGlyZWRfYXQiOiIyMDI0LTA2LTE5VDE2OjMwOjQ3LjkyMjQ0KzA3OjAwIn0._4bDh2u4nScCVZ2uHaGGtYmDISlCKeGc2t0cErDoBLI",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5OGI4MDg2LWZiZGUtNGZiOS1iMTFkLTQ0OTUyOTY2ZmM3OCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoxMzoxMC4xNzk0NDQrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yN1QxNzoxMzoxMC4xNzk0NDQrMDc6MDAifQ.dE1C1NGoRKXVKJH_Rn3NM96LXm4bXUL0TxlIJlxJamQ\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/renew-token",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"renew-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Renew Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwMDEwYmFlLTRmYmMtNGI3Yy1iNjRmLWY0MWNmNzdkNDk2NiIsInVzZXJfaWQiOiI4Mzc3OTQxNS1lZjQ2LTQwMTEtYTRhMi00NGY5MDQ0NjYxMTIiLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0xOFQxNjozMDo0Ny45MjI0NCswNzowMCIsImV4cGlyZWRfYXQiOiIyMDI0LTA2LTE5VDE2OjMwOjQ3LjkyMjQ0KzA3OjAwIn0._4bDh2u4nScCVZ2uHaGGtYmDISlCKeGc2t0cErDoBLI",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5OGI4MDg2LWZiZGUtNGZiOS1iMTFkLTQ0OTUyOTY2ZmM3OCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoxMzoxMC4xNzk0NDQrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yN1QxNzoxMzoxMC4xNzk0NDQrMDc6MDAifQ.dE1C1NGoRKXVKJH_Rn3NM96LXm4bXUL0TxlIJlxJamQ\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/renew-token",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"renew-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:25:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "431"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": {\n        \"access_token_value\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4\",\n        \"expires_at\": {\n            \"seconds\": 1719398429,\n            \"nanos\": 957092000\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"username\": \"duykhiem123\",\n    \"password\": \"123456\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/login",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\n    \"username\": \"duykhiem123\",\n    \"password\": \"123456\"\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/login",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:13:10 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "903"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"session\": {\n        \"session_id\": \"c98b8086-fbde-4fb9-b11d-44952966fc78\",\n        \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5OGI4MDg2LWZiZGUtNGZiOS1iMTFkLTQ0OTUyOTY2ZmM3OCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoxMzoxMC4xNzk0NDQrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yN1QxNzoxMzoxMC4xNzk0NDQrMDc6MDAifQ.dE1C1NGoRKXVKJH_Rn3NM96LXm4bXUL0TxlIJlxJamQ\",\n        \"expires_at\": {\n            \"seconds\": 1719483190,\n            \"nanos\": 179491000\n        }\n    },\n    \"access_token\": {\n        \"access_token_value\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZTZkNWYxLWQ2OTMtNDkxOC1hZjIzLWJmZmVmYmQyN2FjMCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoxMzoxMC4xNzk0NzYrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyODoxMC4xNzk0NzYrMDc6MDAifQ.HfCK-bihWj5hGegMmDdysSyBEiA_okb_PjIIbXWddmE\",\n        \"expires_at\": {\n            \"seconds\": 1719397690,\n            \"nanos\": 179491000\n        }\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "The `/collections` endpoints let you manage your [collections](https://learning.postman.com/docs/sending-requests/intro-to-collections/)."
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "List Books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/books?page=1&per_page=3",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Books",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/books?page=1&per_page=2",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:32:08 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1157"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n        \"title\": \"Nhung ngoi sao xa soi\",\n        \"full_title\": \"Nhung ngoi sao xa soi\",\n        \"publisher\": {\n            \"id\": \"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba\",\n            \"name\": \"Ta Ngoc Duy Khiem\",\n            \"address\": \"Ho Chi Minh City\"\n        },\n        \"publication_date\": {\n            \"year\": 2023,\n            \"month\": 2,\n            \"day\": 14\n        },\n        \"isbn\": \"0421521521161\",\n        \"description\": \"Hay lam nha\",\n        \"price\": 10.2,\n        \"stock_quantity\": 120,\n        \"front_cover_image\": \"front_cover_image\",\n        \"back_cover_image\": \"back_cover_image\",\n        \"authors\": [\n            {\n                \"id\": \"6c3f605a-6927-4ac8-bc6a-eea3adc0a024\",\n                \"full_name\": \"Vo Tran Anh Tai\",\n                \"birth_date\": {\n                    \"year\": 1964,\n                    \"month\": 2,\n                    \"day\": 15\n                }\n            }\n        ]\n    },\n    {\n        \"id\": \"7bdd3169-2482-44d6-b788-1176bbde6ecf\",\n        \"title\": \"Nhung ngoi sao xa soi\",\n        \"full_title\": \"Nhung ngoi sao xa soi\",\n        \"publisher\": {\n            \"id\": \"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba\",\n            \"name\": \"Ta Ngoc Duy Khiem\",\n            \"address\": \"Ho Chi Minh City\"\n        },\n        \"publication_date\": {\n            \"year\": 2023,\n            \"month\": 2,\n            \"day\": 14\n        },\n        \"isbn\": \"0421521521161\",\n        \"description\": \"Hay lam nha\",\n        \"price\": 10.2,\n        \"stock_quantity\": 120,\n        \"front_cover_image\": \"front_cover_image\",\n        \"back_cover_image\": \"back_cover_image\",\n        \"authors\": [\n            {\n                \"id\": \"6c3f605a-6927-4ac8-bc6a-eea3adc0a024\",\n                \"full_name\": \"Vo Tran Anh Tai\",\n                \"birth_date\": {\n                    \"year\": 1964,\n                    \"month\": 2,\n                    \"day\": 15\n                }\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add Book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Nhung ngoi sao xa soi\",\n    \"full_title\": \"Nhung ngoi sao xa soi\",\n    \"publisher\": \"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba\",\n    \"publication_date\": \"2023-02-14\",\n    \"isbn\": \"0421521521161\",\n    \"description\": \"Hay lam nha\",\n    \"price\": 10.2,\n    \"stock_quantity\": 120,\n    \"front_cover_image\": \"front_cover_image\",\n    \"back_cover_image\": \"back_cover_image\",\n    \"authors\": \"6c3f605a-6927-4ac8-bc6a-eea3adc0a024\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/books",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Book",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Nhung ngoi sao xa soi\",\n    \"full_title\": \"Nhung ngoi sao xa soi\",\n    \"publisher\": \"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba\",\n    \"publication_date\": \"2023-02-14\",\n    \"isbn\": \"0421521521161\",\n    \"description\": \"Hay lam nha\",\n    \"price\": 10.2,\n    \"stock_quantity\": 120,\n    \"front_cover_image\": \"front_cover_image\",\n    \"back_cover_image\": \"back_cover_image\",\n    \"authors\": \"6c3f605a-6927-4ac8-bc6a-eea3adc0a024\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/books",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:31:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "577"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7bdd3169-2482-44d6-b788-1176bbde6ecf\",\n    \"title\": \"Nhung ngoi sao xa soi\",\n    \"full_title\": \"Nhung ngoi sao xa soi\",\n    \"publisher\": {\n        \"id\": \"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba\",\n        \"name\": \"Ta Ngoc Duy Khiem\",\n        \"address\": \"Ho Chi Minh City\"\n    },\n    \"publication_date\": {\n        \"year\": 2023,\n        \"month\": 2,\n        \"day\": 14\n    },\n    \"isbn\": \"0421521521161\",\n    \"description\": \"Hay lam nha\",\n    \"price\": 10.2,\n    \"stock_quantity\": 120,\n    \"front_cover_image\": \"front_cover_image\",\n    \"back_cover_image\": \"back_cover_image\",\n    \"authors\": [\n        {\n            \"id\": \"6c3f605a-6927-4ac8-bc6a-eea3adc0a024\",\n            \"full_name\": \"Vo Tran Anh Tai\",\n            \"birth_date\": {\n                \"year\": 1964,\n                \"month\": 2,\n                \"day\": 15\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Publisher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ta Ngoc Duy Khiem\",\n    \"address\": \"Ho Chi Minh City\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/publishers",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"publishers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Publisher",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ta Ngoc Duy Khiem\",\n    \"address\": \"Ho Chi Minh City\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/publishers",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"publishers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:32:40 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"a3e76dd1-c6f1-4cb1-b40e-974abc9100e0\",\n    \"name\": \"Ta Ngoc Duy Khiem\",\n    \"address\": \"Ho Chi Minh City\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Publisher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/publishers/4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"publishers",
+								"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Publisher",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/publishers/4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"publishers",
+										"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:33:02 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba\",\n    \"name\": \"Ta Ngoc Duy Khiem\",\n    \"address\": \"Ho Chi Minh City\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Author",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/authors/6c3f605a-6927-4ac8-bc6a-eea3adc0a024",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"authors",
+								"6c3f605a-6927-4ac8-bc6a-eea3adc0a024"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Author",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/authors/6c3f605a-6927-4ac8-bc6a-eea3adc0a024",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"authors",
+										"6c3f605a-6927-4ac8-bc6a-eea3adc0a024"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:33:17 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"6c3f605a-6927-4ac8-bc6a-eea3adc0a024\",\n    \"full_name\": \"Vo Tran Anh Tai\",\n    \"birth_date\": {\n        \"year\": 1964,\n        \"month\": 2,\n        \"day\": 15\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Author",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"Vo Tran Anh Tai\",\n    \"birth_date\": \"1964-02-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/authors",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"authors"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Author",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"full_name\": \"Vo Tran Anh Tai\",\n    \"birth_date\": \"1964-02-15\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/authors",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:33:46 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"645f9bfc-520b-49d3-97a2-dc4a4ae75beb\",\n    \"full_name\": \"Vo Tran Anh Tai\",\n    \"birth_date\": {\n        \"year\": 1964,\n        \"month\": 2,\n        \"day\": 15\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Book",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/books/d03afb6e-0531-4f0c-ac96-ee7377a66b33",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"books",
+								"d03afb6e-0531-4f0c-ac96-ee7377a66b33"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Book",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMTgzYmE3LWMyOGUtNDNjNy1hZjljLWU0ZDM0MWMwODkzYSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yNlQxNzoyNToyOS45NTcwNjErMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yNlQxNzo0MDoyOS45NTcwNjErMDc6MDAifQ.lWgo-1kbW2oBZMw19ZgKJdp0m3xGrNtAEDELgKNUN_4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/books/d03afb6e-0531-4f0c-ac96-ee7377a66b33",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"books",
+										"d03afb6e-0531-4f0c-ac96-ee7377a66b33"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 10:34:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "577"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n    \"title\": \"Nhung ngoi sao xa soi\",\n    \"full_title\": \"Nhung ngoi sao xa soi\",\n    \"publisher\": {\n        \"id\": \"4c9cf81d-2fee-4cdb-a0e6-57a1c0e726ba\",\n        \"name\": \"Ta Ngoc Duy Khiem\",\n        \"address\": \"Ho Chi Minh City\"\n    },\n    \"publication_date\": {\n        \"year\": 2023,\n        \"month\": 2,\n        \"day\": 14\n    },\n    \"isbn\": \"0421521521161\",\n    \"description\": \"Hay lam nha\",\n    \"price\": 10.2,\n    \"stock_quantity\": 120,\n    \"front_cover_image\": \"front_cover_image\",\n    \"back_cover_image\": \"back_cover_image\",\n    \"authors\": [\n        {\n            \"id\": \"6c3f605a-6927-4ac8-bc6a-eea3adc0a024\",\n            \"full_name\": \"Vo Tran Anh Tai\",\n            \"birth_date\": {\n                \"year\": 1964,\n                \"month\": 2,\n                \"day\": 15\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Add Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": \"7bdd3169-2482-44d6-b788-1176bbde6ecf\",\n    \"quantity\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/items",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Item",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n    \"quantity\": 50\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/items",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:36:21 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart_item_id\": \"4feffdba-d51c-49db-846c-aaa3fa4cc692\",\n    \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n    \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n    \"quantity\": 50,\n    \"unit_price\": 10.2\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shipping_address\": \"Ho Chi Minh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{BASE_URL}}/orders",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"shipping_address\": \"Ho Chi Minh\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE_URL}}/orders",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:36:45 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "543"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"order\": {\n        \"order_id\": \"ae4c7ff1-9b72-46f2-b173-c94341c441ca\",\n        \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n        \"order_at\": {\n            \"seconds\": 1719553005,\n            \"nanos\": 817034000\n        },\n        \"status\": \"PENDING\",\n        \"total_amount\": 509.99999999999994,\n        \"shipping_address\": \"Ho Chi Minh\"\n    },\n    \"discount\": {\n        \"discount_id\": \"00000000-0000-0000-0000-000000000000\",\n        \"start_date\": {\n            \"seconds\": -62135596800\n        },\n        \"end_date\": {\n            \"seconds\": -62135596800\n        }\n    },\n    \"order_detail_list\": [\n        {\n            \"order_id\": \"ae4c7ff1-9b72-46f2-b173-c94341c441ca\",\n            \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n            \"quantity\": 50,\n            \"unit_price\": 10.2\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM3ZWQ0ZWJiLTQ3MTAtNDhmMS1hNzU4LTQyOWFiNWM4YTc5OSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozOTo1NS4xNzc0MjMrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo1NDo1NS4xNzc0MjMrMDc6MDAifQ.r95mLKY3DrPq5u9tixnuKPLb7C2dNRWrRtiNQeZDuzQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/orders/ae4c7ff1-9b72-46f2-b173-c94341c441ca",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders",
+								"ae4c7ff1-9b72-46f2-b173-c94341c441ca"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM3ZWQ0ZWJiLTQ3MTAtNDhmMS1hNzU4LTQyOWFiNWM4YTc5OSIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozOTo1NS4xNzc0MjMrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo1NDo1NS4xNzc0MjMrMDc6MDAifQ.r95mLKY3DrPq5u9tixnuKPLb7C2dNRWrRtiNQeZDuzQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/orders/ae4c7ff1-9b72-46f2-b173-c94341c441ca",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders",
+										"ae4c7ff1-9b72-46f2-b173-c94341c441ca"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:41:32 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"order_id\": \"ae4c7ff1-9b72-46f2-b173-c94341c441ca\",\n    \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n    \"order_at\": {\n        \"seconds\": 1719553005,\n        \"nanos\": 817034000\n    },\n    \"status\": \"PENDING\",\n    \"total_amount\": 509.99999999999994,\n    \"shipping_address\": \"Ho Chi Minh\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Item",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/items/b22b3556-dc38-4fb5-887f-6e6ce95b93f3",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"items",
+								"b22b3556-dc38-4fb5-887f-6e6ce95b93f3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Item",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/items/b22b3556-dc38-4fb5-887f-6e6ce95b93f3",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"items",
+										"b22b3556-dc38-4fb5-887f-6e6ce95b93f3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:43:18 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart_item_id\": \"b22b3556-dc38-4fb5-887f-6e6ce95b93f3\",\n    \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n    \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n    \"quantity\": 10,\n    \"unit_price\": 10.2\n}"
+						}
+					]
+				},
+				{
+					"name": "List Items",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/items?",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"items"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Items",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/items?",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"items"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:45:21 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "373"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"cart_item_id\": \"f4159e86-1116-4c26-8fa4-6d6dc1732f0f\",\n        \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n        \"book_id\": \"7bdd3169-2482-44d6-b788-1176bbde6ecf\",\n        \"quantity\": 10,\n        \"unit_price\": 10.2\n    },\n    {\n        \"cart_item_id\": \"b22b3556-dc38-4fb5-887f-6e6ce95b93f3\",\n        \"user_id\": \"d2aa03be-a465-46ba-86e6-7367da688d17\",\n        \"book_id\": \"d03afb6e-0531-4f0c-ac96-ee7377a66b33\",\n        \"quantity\": 10,\n        \"unit_price\": 10.2\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Remove Item",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{BASE_URL}}/items/f4159e86-1116-4c26-8fa4-6d6dc1732f0f",
+							"protocol": "http",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"items",
+								"f4159e86-1116-4c26-8fa4-6d6dc1732f0f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Remove Item",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlNjRmYmNmLTJlN2UtNDZhZC1hYzU1LTA4YzgxMThlODEzOCIsInVzZXJfaWQiOiJkMmFhMDNiZS1hNDY1LTQ2YmEtODZlNi03MzY3ZGE2ODhkMTciLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0yOFQxMjozMzo1MS4xNDkyMTgrMDc6MDAiLCJleHBpcmVkX2F0IjoiMjAyNC0wNi0yOFQxMjo0ODo1MS4xNDkyMTgrMDc6MDAifQ.Rnm97E4VE8kwG_evaPFzBMs5U--DiuE0yNMYqXSbBeY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{BASE_URL}}/items/f4159e86-1116-4c26-8fa4-6d6dc1732f0f",
+									"protocol": "http",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"items",
+										"f4159e86-1116-4c26-8fa4-6d6dc1732f0f"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Jun 2024 05:46:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccessful\": true\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "X-API-Key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://farming-simulator.pstmn.io"
+		}
+	]
+}

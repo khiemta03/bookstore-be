@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package pb;
+
+import "rpc_login.proto";
+import "rpc_register.proto";
+import "rpc_validate_token.proto";
+import "rpc_renew_token.proto";
+
+option go_package = "github.com/khiemta03/bookstore-be/authentication-service/internal/grpc/authentication/pb";
+
+service AuthenticationService {
+    rpc Login (LoginRequest) returns (LoginResponse) {};
+    rpc Register (RegisterRequest) returns (LoginResponse) {};
+    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse) {};
+    rpc RenewAccessToken (RenewAccessTokenRequest) returns (RenewAccessTokenResponse) {};
+}
+

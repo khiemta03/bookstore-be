@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/authentication-service/internal/grpc/authentication/pb";
+
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+    string repeated_password = 3;
+    string email = 4;
+    string fullname = 5;
+    string phone = 6;
+    string address = 7;
+    string user_agent = 8;
+    string client_ip = 9;
+}
+
+

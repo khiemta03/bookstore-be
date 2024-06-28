@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/khiemta03/bookstore-be/order-service/internal/grpc/order/pb";
+
+message AddNewItemRequest {
+    string user_id = 1;
+    string book_id = 2 ;
+    int32 quantity = 3;
+}
