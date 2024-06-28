@@ -1,0 +1,96 @@
+version: "3"
+services:
+  book-service-postgres12:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=book-service
+      - POSTGRES_DB=book-service-database
+  book-service:
+    build: 
+      context: ./Book-Service
+      dockerfile: ./Dockerfile
+    environment:
+      - DB_SOURCE=postgresql://root:book-service@book-service-postgres12:5432/book-service-database?sslmode=disable
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
+    depends_on:
+      - book-service-postgres12
+    entrypoint: ["/app/script/wait-for.sh", "book-service-postgres12:5432", "--", "/app/script/start.sh"]
+    command: ["/app/main"]
+
+  user-service-postgres12:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=user-service
+      - POSTGRES_DB=user-service-database
+  user-service:
+    build: 
+      context: ./User-Service
+      dockerfile: ./Dockerfile
+    environment:
+      - DB_SOURCE=postgresql://root:user-service@user-service-postgres12:5432/user-service-database?sslmode=disable
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
+    depends_on:
+      - user-service-postgres12
+    entrypoint: ["/app/script/wait-for.sh", "user-service-postgres12:5432", "--", "/app/script/start.sh"]
+    command: ["/app/main"]
+
+  authentication-service-postgres12:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=authentication-service
+      - POSTGRES_DB=authentication-service-database
+  authentication-service:
+    build: 
+      context: ./Authentication-Service
+      dockerfile: ./Dockerfile
+    environment:
+      - DB_SOURCE=postgresql://root:authentication-service@authentication-service-postgres12:5432/authentication-service-database?sslmode=disable
+      - USER_SERVICE_SERVER_ADDRESS=user-service:3000
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
+    depends_on:
+      - authentication-service-postgres12
+    entrypoint: ["/app/script/wait-for.sh", "authentication-service-postgres12:5432", "--", "/app/script/start.sh"]
+    command: ["/app/main"]
+
+  order-service-postgres12:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=order-service
+      - POSTGRES_DB=order-service-database
+  order-service:
+    build: 
+      context: ./Order-Service
+      dockerfile: ./Dockerfile
+    environment:
+      - DB_SOURCE=postgresql://root:order-service@order-service-postgres12:5432/order-service-database?sslmode=disable
+      - BOOK_SERVICE_SERVER_ADDRESS=book-service:3000
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
+    depends_on:
+      - order-service-postgres12
+    entrypoint: ["/app/script/wait-for.sh", "order-service-postgres12:5432", "--", "/app/script/start.sh"]
+    command: ["/app/main"]
+
+  api-getway:
+    build: 
+      context: ./API-Getway
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - USER_SERVICE_SERVER_ADDRESS=user-service:3000
+      - AUTHENTICATION_SERVICE_ADDRESS=authentication-service:3000
+      - BOOK_SERVICE_ADDRESS=book-service:3000
+      - ORDER_SERVICE_SERVER_ADDRESS=order-service:3000
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
+    
+
+
